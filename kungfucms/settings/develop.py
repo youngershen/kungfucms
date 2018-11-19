@@ -16,3 +16,4 @@ DATABASES = {
     # read os.environ['SQLITE_URL']
     'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
 }
+

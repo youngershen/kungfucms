@@ -21,3 +21,4 @@ CACHES = {
     # read os.environ['REDIS_URL']
     'redis': env.cache('REDIS_URL')
 }
+
