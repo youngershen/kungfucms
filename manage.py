@@ -1,9 +1,18 @@
 #!/usr/bin/env python
 import os
 import sys
+import environ
+
+BASE_DIR = os.path.abspath('.')
+ENV_NAME = '.env'
+
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, ENV_NAME))
+
+DJANGO_SETTINGS_MODULE = env.str('DJANGO_SETTINGS_MODULE')
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kungfucms.settings.product')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', DJANGO_SETTINGS_MODULE)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
