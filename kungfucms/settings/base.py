@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'kungfu.urls'
+ROOT_URLCONF = 'kungfucms.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'kungfu.wsgi.application'
+WSGI_APPLICATION = 'kungfucms.wsgi.application'
 
 
 # Database
