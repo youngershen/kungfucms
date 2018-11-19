@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('', namespace='')),
+    path('account/', include(('kungfucms.apps.account.urls', 'account'), namespace='account')),
     path('admin/', admin.site.urls),
 ]
 

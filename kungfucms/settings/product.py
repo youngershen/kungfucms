@@ -8,8 +8,11 @@ from kungfucms.settings.base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+INSTALLED_APPS += [
+    'kungfucms.apps.account'
+]
 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASES = {
     'default': env.db()
