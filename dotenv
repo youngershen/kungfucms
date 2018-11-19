@@ -1,6 +1,8 @@
 DEBUG=off
-DJANGO_SETTING_MODULE=kungfucms.settings.product
+DJANGO_SETTINGS_MODULE=kungfucms.settings.develop
 SECRET_KEY=your-secret-key
+LANGUAGE_CODE=en-us
+TIME_ZONE=UTC
 DATABASE_URL=mysql://root:root@127.0.0.1:3306/kungfucms
 CACHE_URL=memcache://127.0.0.1:11211,127.0.0.1:11212,127.0.0.1:11213
 REDIS_URL=rediscache://127.0.0.1:6379/1?client_class=django_redis.client.DefaultClient&password=ungithubbed-secret
