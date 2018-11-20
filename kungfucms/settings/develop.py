@@ -19,6 +19,8 @@ DATABASES = {
     'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
 }
 
-
+INSTALLED_APPS += [
+    'django_extensions'
+]
 
 
