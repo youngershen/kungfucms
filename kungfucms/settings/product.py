@@ -68,10 +68,14 @@ LOGGING = {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
         },
+        'db': {
+            'level': 'INFO',
+            'class': 'kungfucms.utils.logging.DBHandler',
+        }
     },
     'loggers': {
         'kungfucms': {
-            'handlers': ['mail_admins', 'file', 'console'],
+            'handlers': ['mail_admins', 'console', 'db'],
             'level': LOG_LEVEL,
             'propagate': False
         }

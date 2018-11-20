@@ -4,8 +4,10 @@
 # EMAIL : youngershen64@gmail.com
 # CELL : 13811754531
 # WECHAT : 13811754531
+from datetime import datetime
+from logging import FileHandler as BaseFileHandler, Handler, LogRecord
+from django.utils.timezone import make_aware
 from kungfucms.utils.common import get_log_file
-from logging import FileHandler as BaseFileHandler, Handler
 
 
 class FileHandler(BaseFileHandler):
@@ -31,5 +33,15 @@ class FileHandler(BaseFileHandler):
 
 
 class DBHandler(Handler):
-    def emit(self, record):
-        pass
+    def emit(self, record: LogRecord):
+        from kungfucms.apps.system.models import LogRecord as Record
+        asctime = datetime.strptime(record.asctime, '%Y-%m-%d %H:%M:%S,%f')
+        kwargs = {
+            'level_name': record.levelname,
+            'asctime':  make_aware(asctime),
+            'pathname': record.pathname,
+            'funcname': record.funcName,
+            'lineno': record.lineno,
+            'message': record.getMessage()
+        }
+        Record.objects.create(**kwargs)
