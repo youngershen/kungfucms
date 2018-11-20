@@ -24,3 +24,9 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+# LOG_FORMAT = '%(levelname)s %(asctime)s %(pathname)s %(funcName)s %(lineno)s : %(message)s'
+class LogRecord(BaseModel):
+    level_name = models.CharField(max_length=255, default='', blank=True)
+    pass

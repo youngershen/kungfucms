@@ -1,5 +1,5 @@
 import logging
-from kungfucms.apps.common.views import Default
+from kungfucms.apps.system.views import Default
 logger = logging.getLogger(__name__)
 
 

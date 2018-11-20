@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext as _
 from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager
-from kungfucms.apps.common.models import BaseModel
+from kungfucms.apps.system.models import BaseModel
 
 
 class Manager(UserManager):
@@ -43,21 +43,25 @@ class User(AbstractUser, BaseModel):
                                 verbose_name=_('Username'))
 
     email = models.EmailField(db_index=True,
+                              blank=True,
                               default='',
                               verbose_name=_('Email'), )
 
     cellphone = models.CharField(max_length=255,
                                  db_index=True,
+                                 blank=True,
                                  default='',
                                  verbose_name=_('Cellphone'), )
 
     qq_openid = models.CharField(max_length=255,
                                  db_index=True,
+                                 blank=True,
                                  default='',
                                  verbose_name=_('QQ OpenID'), )
 
     wechat_openid = models.CharField(max_length=255,
                                      db_index=True,
+                                     blank=True,
                                      default='',
                                      verbose_name=_('Wechat OpenID'), )
 
@@ -91,6 +95,7 @@ class UserProperty(BaseModel):
                             verbose_name=_('Name'))
 
     value = models.CharField(max_length=255,
+                             blank=True,
                              default='',
                              verbose_name=_('Value'))
 

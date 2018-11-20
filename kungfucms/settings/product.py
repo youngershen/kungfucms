@@ -10,7 +10,8 @@ from kungfucms.utils.common import get_log_file
 DEBUG = False
 
 INSTALLED_APPS += [
-    'kungfucms.apps.account'
+    'kungfucms.apps.system',
+    'kungfucms.apps.account',
 ]
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']

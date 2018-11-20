@@ -6,7 +6,7 @@
 # WECHAT : 13811754531
 from django.views.generic import View as DjangoView
 from django.views.generic.base import TemplateResponseMixin
-from kungfucms.apps.common.mixins import Permisson, \
+from kungfucms.apps.system.mixins import Permisson, \
     APIPermission, \
     Context, \
     APIContext, \
