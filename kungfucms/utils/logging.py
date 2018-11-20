@@ -31,4 +31,5 @@ class FileHandler(BaseFileHandler):
 
 
 class DBHandler(Handler):
-    pass
+    def emit(self, record):
+        pass

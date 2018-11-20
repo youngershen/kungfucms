@@ -29,7 +29,9 @@ CACHES = {
 
 AUTH_USER_MODEL = 'account.User'
 
-DJANGO_LOG_LEVEL = env.str('DJANGO_LOG_LEVEL', default='ERROR')
+LOG_LEVEL = env.str('LOG_LEVEL', default='ERROR')
+
+LOG_FORMAT = '%(levelname)s %(asctime)s %(pathname)s %(funcName)s %(lineno)s : %(message)s'
 
 
 LOGGING = {
@@ -37,7 +39,15 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(pathname)s %(funcName)s %(lineno)s : %(message)s'
+            'format': LOG_FORMAT
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
         },
     },
     'handlers': {
@@ -51,17 +61,17 @@ LOGGING = {
             'class': 'kungfucms.utils.logging.FileHandler',
             'formatter': 'verbose',
             'filename': get_log_file(),
-        }
+        },
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
     },
     'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'propagate': True,
-            'level': 'ERROR'
-        },
         'kungfucms': {
-            'handlers': ['mail_admins', 'file'],
-            'level': 'INFO',
+            'handlers': ['mail_admins', 'file', 'console'],
+            'level': LOG_LEVEL,
             'propagate': False
         }
     }
