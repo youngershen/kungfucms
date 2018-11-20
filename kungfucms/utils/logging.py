@@ -5,7 +5,7 @@
 # CELL : 13811754531
 # WECHAT : 13811754531
 from kungfucms.utils.common import get_log_file
-from logging import FileHandler as BaseFileHandler, StreamHandler
+from logging import FileHandler as BaseFileHandler, Handler
 
 
 class FileHandler(BaseFileHandler):
@@ -25,6 +25,10 @@ class FileHandler(BaseFileHandler):
         """
         if self.stream is None:
             self.stream = self._open()
-        StreamHandler.emit(self, record)
+        super().emit(record)
         self.stream.close()
         self.stream = None
+
+
+class DBHandler(Handler):
+    pass

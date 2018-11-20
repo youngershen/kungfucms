@@ -1,6 +1,14 @@
-from django.shortcuts import render
+import logging
+from kungfucms.apps.common.views import Default
+logger = logging.getLogger(__name__)
 
-# Create your views here.
 
-def register(*args, **kwargs):
-    pass
+class Register(Default):
+    template_name = 'account/register.html'
+
+    def get_context(self, request, *args, **kwargs):
+        logger.error('fuck')
+        return self.to_template(None)
+
+
+register = Register.as_view()
