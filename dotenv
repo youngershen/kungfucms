@@ -1,6 +1,6 @@
 DEBUG=off
 DJANGO_SETTINGS_MODULE=kungfucms.settings.develop
-SECRET_KEY=your-secret-key
+SECRET_KEY=your-own-key
 LANGUAGE_CODE=en-us
 TIME_ZONE=UTC
 DATABASE_URL=mysql://root:root@127.0.0.1:3306/kungfucms

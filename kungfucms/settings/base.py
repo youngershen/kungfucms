@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'decaptcha'
 ]
 
 MIDDLEWARE = [
@@ -74,10 +75,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'kungfucms.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
 # Password validation

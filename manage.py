@@ -11,6 +11,8 @@ env.read_env(os.path.join(BASE_DIR, ENV_NAME))
 
 DJANGO_SETTINGS_MODULE = env.str('DJANGO_SETTINGS_MODULE')
 
+sys.path.append('E:\\Projects\\django-easy-captcha')
+
 if __name__ == '__main__':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', DJANGO_SETTINGS_MODULE)
     try:
