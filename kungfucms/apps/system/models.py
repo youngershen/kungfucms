@@ -41,6 +41,7 @@ class LogRecord(BaseModel):
     funcname = models.CharField(max_length=255, verbose_name=_('Function Name'))
     lineno = models.IntegerField(default=0, verbose_name=_('line Number'))
     message = models.TextField(verbose_name=_('Message'))
+    traceback = models.TextField(verbose_name=_('Traceback'))
 
     class Meta:
         ordering = ['-id']

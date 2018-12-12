@@ -8,7 +8,7 @@ from kungfucms.settings.product import *
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', DOMAIN_NAME]
 
 DEV_STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 

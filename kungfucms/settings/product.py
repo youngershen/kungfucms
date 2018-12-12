@@ -14,7 +14,9 @@ INSTALLED_APPS += [
     'kungfucms.apps.account',
 ]
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+DOMAIN_NAME = env.str('DOMAIN_NAME', 'localhost')
+
+ALLOWED_HOSTS = [DOMAIN_NAME, ]
 
 DATABASES = {
     'default': env.db()
@@ -69,7 +71,7 @@ LOGGING = {
             'class': 'logging.StreamHandler',
         },
         'db': {
-            'level': 'INFO',
+            'level': 'ERROR',
             'class': 'kungfucms.utils.logging.DBHandler',
         }
     },

@@ -12,9 +12,6 @@ from kungfucms.utils.common import get_log_file
 
 class FileHandler(BaseFileHandler):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(filename='', mode='a', encoding=None, delay=False)
-
     def _open(self):
         self.baseFilename = get_log_file()
         return open(self.baseFilename, self.mode, encoding=self.encoding)
@@ -35,13 +32,17 @@ class FileHandler(BaseFileHandler):
 class DBHandler(Handler):
     def emit(self, record: LogRecord):
         from kungfucms.apps.system.models import LogRecord as Record
-        asctime = datetime.strptime(record.asctime, '%Y-%m-%d %H:%M:%S,%f')
+        traceback = self.format(record)
+        message = record.getMessage()
+        create_at = datetime.fromtimestamp(record.created)
+
         kwargs = {
             'level_name': record.levelname,
-            'asctime':  make_aware(asctime),
+            'asctime': make_aware(create_at),
             'pathname': record.pathname,
             'funcname': record.funcName,
             'lineno': record.lineno,
-            'message': record.getMessage()
+            'message': message,
+            'traceback': traceback
         }
         Record.objects.create(**kwargs)
