@@ -80,35 +80,39 @@ class Response:
 class Permisson:
 
     @staticmethod
-    def get_permission(request, *args, **kwargs):
+    def get_permission():
         return True, None
 
     @staticmethod
-    def post_permission(request, *args, **kwargs):
+    def post_permission():
         return True, None
 
     @staticmethod
-    def put_permission(request, *args, **kwargs):
+    def put_permission():
         return True, None
 
     @staticmethod
-    def delete_permission(request, *args, **kwargs):
+    def delete_permission():
         return True, None
 
 
 class APIPermission(Permisson):
 
-    def patch_permission(self, request, *args, **kwargs):
-        return True, self.to_redirect()
+    @staticmethod
+    def patch_permission():
+        return True, None
 
-    def head_permission(self, request, *args, **kwargs):
-        return True, self.to_redirect()
+    @staticmethod
+    def head_permission():
+        return True, None
 
-    def options_permission(self, request, *args, **kwargs):
-        return True, self.to_redirect()
+    @staticmethod
+    def options_permission():
+        return True, None
 
-    def trace_permission(self, request, *args, **kwargs):
-        return True, self.to_redirect()
+    @staticmethod
+    def trace_permission():
+        return True, None
 
 
 # riff code here

@@ -12,7 +12,7 @@ class Manager(UserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, password, **extra_fields):
+    def create_user(self, username, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(username, password, **extra_fields)
@@ -20,48 +20,43 @@ class Manager(UserManager):
     def create_staff(self, username, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', False)
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError(_('Staff must have is_staff=True'))
-
         return self._create_user(username, password, **extra_fields)
 
-    def create_user(self, username, password=None, **extra_fields):
+    def create_superuser(self, username, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError(_('Superuser must have is_staff=True'))
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError(_('Superuser must have is_superuser=True'))
-
         return self._create_user(username, password, **extra_fields)
 
 
 class User(AbstractUser, BaseModel):
-    username = models.CharField(max_length=255,
+    username = models.CharField(max_length=128,
                                 unique=True,
                                 verbose_name=_('Username'))
 
     email = models.EmailField(db_index=True,
                               blank=True,
+                              null=True,
                               default='',
                               verbose_name=_('Email'), )
 
-    cellphone = models.CharField(max_length=255,
+    cellphone = models.CharField(max_length=128,
                                  db_index=True,
                                  blank=True,
+                                 null=True,
                                  default='',
                                  verbose_name=_('Cellphone'), )
 
-    qq_openid = models.CharField(max_length=255,
+    qq_openid = models.CharField(max_length=128,
                                  db_index=True,
                                  blank=True,
+                                 null=True,
                                  default='',
                                  verbose_name=_('QQ OpenID'), )
 
-    wechat_openid = models.CharField(max_length=255,
+    wechat_openid = models.CharField(max_length=128,
                                      db_index=True,
                                      blank=True,
+                                     null=True,
                                      default='',
                                      verbose_name=_('Wechat OpenID'), )
 
@@ -90,7 +85,7 @@ class UserProperty(BaseModel):
                              related_name='properties',
                              related_query_name='property')
 
-    name = models.CharField(max_length=255,
+    name = models.CharField(max_length=128,
                             db_index=True,
                             verbose_name=_('Name'))
 

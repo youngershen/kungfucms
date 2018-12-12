@@ -1,0 +1,3 @@
+-r product.txt
+
+django_extensions
