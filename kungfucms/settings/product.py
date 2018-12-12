@@ -75,7 +75,12 @@ LOGGING = {
     },
     'loggers': {
         'kungfucms': {
-            'handlers': ['mail_admins', 'console', 'db'],
+            'handlers': ['mail_admins', 'console', 'db', 'file'],
+            'level': LOG_LEVEL,
+            'propagate': False
+        },
+        'django': {
+            'handlers': ['mail_admins', 'console', 'db', 'file'],
             'level': LOG_LEVEL,
             'propagate': False
         }
