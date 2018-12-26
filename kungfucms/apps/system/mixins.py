@@ -79,39 +79,31 @@ class Response:
 
 class Permisson:
 
-    @staticmethod
-    def get_permission():
+    def get_permission(self, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def post_permission():
+    def post_permission(self, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def put_permission():
+    def put_permission(self, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def delete_permission():
+    def delete_permission(self, *args, **kwargs):
         return True, None
 
 
 class APIPermission(Permisson):
 
-    @staticmethod
-    def patch_permission():
+    def patch_permission(self, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def head_permission():
+    def head_permission(self, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def options_permission():
+    def options_permission(self, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def trace_permission():
+    def trace_permission(self, *args, **kwargs):
         return True, None
 
 
