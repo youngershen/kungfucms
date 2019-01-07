@@ -14,20 +14,23 @@ INSTALLED_APPS += [
     'kungfucms.apps.account',
 ]
 
-DOMAIN_NAME = env.str('DOMAIN_NAME', 'localhost')
+DOMAIN_NAME = env.list('DOMAIN_NAME', default='localhost')
 
-ALLOWED_HOSTS = [DOMAIN_NAME, ]
+ALLOWED_HOSTS = DOMAIN_NAME
 
 DATABASES = {
     'default': env.db()
 }
 
-# CACHES = {
-#  read os.environ['CACHE_URL'] and raises ImproperlyConfigured exception if not found
-#  'default': env.cache(),
-#  read os.environ['REDIS_URL']
-#  'redis': env.cache('REDIS_URL')
-# }
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": env.str('CACHE_REDIS_URL'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+}
 
 
 AUTH_USER_MODEL = 'account.User'

@@ -6,17 +6,14 @@
 # WECHAT : 13811754531
 from kungfucms.settings.product import *
 
-DEBUG = env('DEBUG')
+DEBUG = env('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', DOMAIN_NAME]
+ALLOWED_HOSTS = ['*']
 
 DEV_STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 DATABASES = {
-    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
     'default': env.db(),
-    # read os.environ['SQLITE_URL']
-    # 'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
 }
 
 INSTALLED_APPS += [
