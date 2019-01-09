@@ -77,7 +77,7 @@ class Response:
         pass
 
 
-class Permisson:
+class Permission:
 
     def get_permission(self, *args, **kwargs):
         return True, None
@@ -92,7 +92,7 @@ class Permisson:
         return True, None
 
 
-class APIPermission(Permisson):
+class APIPermission(Permission):
 
     def patch_permission(self, *args, **kwargs):
         return True, None
