@@ -13,4 +13,20 @@ class Register(Default):
         return self.to_template(None)
 
 
+class Login(Default):
+    pass
+
+
+class ResetPassword(Default):
+    pass
+
+
+class ChangePassword(Default):
+    pass
+
+
+class ActiveUser(Default):
+    pass
+
+
 register = Register.as_view()
