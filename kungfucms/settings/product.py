@@ -4,8 +4,9 @@
 # EMAIL : youngershen64@gmail.com
 # CELL : 13811754531
 # WECHAT : 13811754531
+import logging
 from kungfucms.settings.base import *
-from kungfucms.utils.common import get_log_file
+from kungfucms.logging.utils import get_log_file
 
 DEBUG = False
 
@@ -42,7 +43,7 @@ LOG_FORMAT = '%(levelname)s %(asctime)s %(pathname)s %(funcName)s %(lineno)s : %
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
             'format': LOG_FORMAT
@@ -60,22 +61,23 @@ LOGGING = {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
             'formatter': 'verbose'
         },
         'file': {
-            'level': 'INFO',
-            'class': 'kungfucms.utils.logging.FileHandler',
+            'level': logging.INFO,
+            'class': 'kungfucms.logging.handlers.FileHandler',
             'formatter': 'verbose',
             'filename': get_log_file(),
         },
         'console': {
-            'level': 'DEBUG',
+            'level': logging.DEBUG,
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
         },
         'db': {
-            'level': 'ERROR',
-            'class': 'kungfucms.utils.logging.DBHandler',
+            'level': logging.ERROR,
+            'class': 'kungfucms.logging.handlers.DBHandler',
         }
     },
     'loggers': {

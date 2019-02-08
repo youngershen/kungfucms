@@ -1,5 +1,5 @@
 # PROJECT : kungfucms
-# TIME : 2018/11/20 11:27
+# TIME : 19-2-8 下午10:20
 # AUTHOR : Younger Shen
 # EMAIL : younger.x.shen@gmail.com
 # CELL : 13811754531
@@ -9,7 +9,7 @@
 from datetime import datetime
 from logging import FileHandler as BaseFileHandler, Handler, LogRecord
 from django.utils.timezone import make_aware
-from kungfucms.utils.common import get_log_file
+from kungfucms.logging.utils import get_log_file
 
 
 class FileHandler(BaseFileHandler):

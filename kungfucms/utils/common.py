@@ -9,7 +9,6 @@
 import os
 from pathlib import Path
 import environ
-from datetime import datetime
 
 
 def get_base_path():
@@ -26,29 +25,16 @@ def get_env(file_name='.env'):
     return env
 
 
-def get_log_path():
-    env = get_env()
-    path = env.str('LOG_DIR')
-    if not path.startswith('/'):
-        path = os.path.join(get_base_path(), path)
-
-    return path
-
-
-def get_log_file():
-    now = datetime.utcnow()
-    path = get_log_path()
-    path = os.path.join(path, now.strftime('%Y/%m'))
-
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-    return os.path.join(path, now.strftime('%d.log'))
-
-
 def get_static_dirs():
     base_dir = get_base_path()
     theme_dir = os.path.join(base_dir, 'themes')
     path = Path(theme_dir)
     dirs = [(p.name, str(p)) for p in path.iterdir()]
     return dirs
+
+
+def get_media_root():
+    env = get_env()
+    path = env.str('MEDIA_ROOT')
+    return path if path.startswith('/') else os.path.join(get_base_path(), path)
+

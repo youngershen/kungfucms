@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import pymysql
 
-from kungfucms.utils.common import get_base_path, get_env
+from kungfucms.utils import get_base_path, get_env, get_media_root
+from kungfucms.logging.utils import get_log_path
 
 pymysql.install_as_MySQLdb()
 
@@ -118,7 +119,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/upload/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
+MEDIA_ROOT = get_media_root()
+
+LOG_ROOT = get_log_path()
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
