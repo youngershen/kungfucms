@@ -1,12 +1,14 @@
 # PROJECT : kungfucms
 # TIME : 2018/11/20 11:46
 # AUTHOR : Younger Shen
-# EMAIL : youngershen64@gmail.com
+# EMAIL : younger.x.shen@gmail.com
 # CELL : 13811754531
 # WECHAT : 13811754531
+# WEB : https://youngershen.com
+
 from django.views.generic import View as DjangoView
 from django.views.generic.base import TemplateResponseMixin
-from kungfucms.apps.system.mixins import Permisson, \
+from kungfucms.apps.system.mixins import Permission, \
     APIPermission, \
     Context, \
     APIContext, \
@@ -15,7 +17,7 @@ from kungfucms.apps.system.mixins import Permisson, \
     FlashMessage
 
 
-class Default(FlashMessage, Context, Permisson, Response, TemplateResponseMixin, RedirectResponse, DjangoView):
+class Default(FlashMessage, Context, Permission, Response, TemplateResponseMixin, RedirectResponse, DjangoView):
     http_method_names = ['get', 'post', 'put', 'delete']
     template_name = 'index.html'
 
@@ -48,13 +50,17 @@ class API(APIContext, APIPermission, Default):
         return self.to_json()
 
 
-class Handler404(Default):
+class ErrorHandler(Default):
     pass
 
 
-class Handler500(Default):
+class ErrorHandler404(ErrorHandler):
     pass
 
 
-class Handler405(Default):
+class ErrorHandler500(ErrorHandler):
+    pass
+
+
+class ErrorHandler405(ErrorHandler):
     pass
