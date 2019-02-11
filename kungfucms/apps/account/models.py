@@ -46,20 +46,6 @@ class User(AbstractUser, BaseModel):
                                  default='',
                                  verbose_name=_('Cellphone'), )
 
-    qq_openid = models.CharField(max_length=128,
-                                 db_index=True,
-                                 blank=True,
-                                 null=True,
-                                 default='',
-                                 verbose_name=_('QQ OpenID'), )
-
-    wechat_openid = models.CharField(max_length=128,
-                                     db_index=True,
-                                     blank=True,
-                                     null=True,
-                                     default='',
-                                     verbose_name=_('Wechat OpenID'), )
-
     USERNAME_FIELD = 'username'
 
     objects = Manager()
@@ -99,4 +85,23 @@ class Profile(BaseModel):
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
 
+
+class SocialLoginToken(BaseModel):
+    qq = models.CharField(max_length=255, unique=True, verbose_name=_('QQ Token'))
+    wechat = models.CharField(max_length=255, unique=True, verbose_name=_('Wechat Token'))
+    facebook = models.CharField(max_length=255, unique=True, verbose_name=_('Facebook Token'))
+    tiwtter = models.CharField(max_length=255, unique=True, verbose_name=_('Twitter Token'))
+    google = models.CharField(max_length=255, unique=True, verbose_name=_('Google Token'))
+
+    user = models.OneToOneField(User,
+                                related_name='social_login_token',
+                                related_query_name='social_login_token',
+                                blank=True,
+                                null=True,
+                                on_delete=models.SET_NULL)
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = _('Social Login Token')
+        verbose_name_plural = _('Social Login Token')
 
