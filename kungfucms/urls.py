@@ -18,10 +18,20 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from kungfucms.apps.exception.views import exception_handler400, \
+    exception_handler403, \
+    exception_handler404, \
+    exception_handler500
+
 urlpatterns = [
     path('account/', include(('kungfucms.apps.account.urls', 'account'), namespace='account')),
     path('admin/', admin.site.urls),
 ]
+
+handler400 = exception_handler400
+handler403 = exception_handler403
+handler404 = exception_handler404
+handler500 = exception_handler500
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.ASSETS_ROOT)

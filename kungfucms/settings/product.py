@@ -13,6 +13,7 @@ DEBUG = False
 INSTALLED_APPS += [
     'kungfucms.apps.system',
     'kungfucms.apps.account',
+    'kungfucms.apps.exception'
 ]
 
 DOMAIN_NAME = env.list('DOMAIN_NAME', default='localhost')

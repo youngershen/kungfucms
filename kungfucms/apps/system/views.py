@@ -48,19 +48,3 @@ class API(APIContext, APIPermission, Default):
 
     def trace_context(self, request, *args, **kwargs):
         return self.to_json()
-
-
-class ErrorHandler(Default):
-    pass
-
-
-class ErrorHandler404(ErrorHandler):
-    pass
-
-
-class ErrorHandler500(ErrorHandler):
-    pass
-
-
-class ErrorHandler405(ErrorHandler):
-    pass
