@@ -1,9 +1,9 @@
 import logging
-from kungfucms.apps.system.views import Default
+from kungfucms.apps.system.views import Default as DefaultView
 logger = logging.getLogger(__name__)
 
 
-class Register(Default):
+class Register(DefaultView):
     template_name = 'account/register.html'
 
     def get_context(self, request, *args, **kwargs):
@@ -13,20 +13,29 @@ class Register(Default):
         return self.to_template()
 
 
-class Login(Default):
+class Login(DefaultView):
     pass
 
 
-class ResetPassword(Default):
+class ResetPassword(DefaultView):
     pass
 
 
-class ChangePassword(Default):
+class ChangePassword(DefaultView):
     pass
 
 
-class ActiveUser(Default):
+class ActiveUser(DefaultView):
+    pass
+
+
+class DeleteUser(DefaultView):
     pass
 
 
 register = Register.as_view()
+login = Login.as_view()
+reset_password = ResetPassword.as_view()
+change_password = ChangePassword.as_view()
+active_user = ActiveUser.as_view()
+delete_user = DeleteUser.as_view()

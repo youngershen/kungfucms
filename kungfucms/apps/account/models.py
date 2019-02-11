@@ -79,11 +79,11 @@ class User(AbstractUser, BaseModel):
         verbose_name_plural = _('Users')
 
 
-class UserProperty(BaseModel):
+class Profile(BaseModel):
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
-                             related_name='properties',
-                             related_query_name='property')
+                             related_name='profiles',
+                             related_query_name='profile')
 
     name = models.CharField(max_length=128,
                             db_index=True,
@@ -96,5 +96,7 @@ class UserProperty(BaseModel):
 
     class Meta:
         ordering = ['id']
-        verbose_name = _('property')
-        verbose_name_plural = _('Properties')
+        verbose_name = _('Profile')
+        verbose_name_plural = _('Profiles')
+
+
