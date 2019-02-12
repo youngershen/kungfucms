@@ -81,36 +81,49 @@ class Response:
 
 class Permission:
 
-    def get_permission(self, *args, **kwargs):
+    @staticmethod
+    def get_permission(*args, **kwargs):
         return True, None
 
-    def post_permission(self, *args, **kwargs):
+    @staticmethod
+    def post_permission(*args, **kwargs):
         return True, None
 
-    def put_permission(self, *args, **kwargs):
+    @staticmethod
+    def put_permission(*args, **kwargs):
         return True, None
 
-    def delete_permission(self, *args, **kwargs):
+    @staticmethod
+    def delete_permission( *args, **kwargs):
         return True, None
+
+    @staticmethod
+    def _is_login(request):
+        print(request.user.is_authenticated)
+        return request.user.is_authenticated
 
 
 class APIPermission(Permission):
 
-    def patch_permission(self, *args, **kwargs):
+    @staticmethod
+    def patch_permission(*args, **kwargs):
         return True, None
 
-    def head_permission(self, *args, **kwargs):
+    @staticmethod
+    def head_permission(*args, **kwargs):
         return True, None
 
-    def options_permission(self, *args, **kwargs):
+    @staticmethod
+    def options_permission(*args, **kwargs):
         return True, None
 
-    def trace_permission(self, *args, **kwargs):
+    @staticmethod
+    def trace_permission(*args, **kwargs):
         return True, None
 
 
 # riff code here
-class Context:
+class Context(Permission):
 
     def get(self, request, *args, **kwargs):
         status, perm_response = self.get_permission(request, *args, **kwargs)
@@ -149,7 +162,7 @@ class Context:
         pass
 
 
-class APIContext(Context):
+class APIContext(Context, APIPermission):
     def patch(self, request, *args, **kwargs):
         status, perm_response = self.patch_permission(request, *args, **kwargs)
         response = self.patch_context(request, *args, **kwargs) if status else perm_response

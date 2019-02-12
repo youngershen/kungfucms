@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-register page
+
+<form action="{% url 'account:register' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="password" name="password_confirm">
+
+    <input type="submit">
+    
+</form>
+
 </body>
 </html>
