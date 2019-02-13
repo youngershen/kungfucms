@@ -10,8 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 import os
+import logging
+
 import pymysql
 
+from kungfucms.logging.utils import get_log_file
 from kungfucms.utils import get_base_path, get_env, get_media_root
 from kungfucms.logging.utils import get_log_path
 
@@ -42,6 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'kungfucms.apps.system',
+    'kungfucms.apps.account',
+    'kungfucms.apps.exception'
 ]
 
 MIDDLEWARE = [
@@ -69,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'kungfucms.apps.account.context_processors.settings'
             ],
         },
     },
@@ -126,4 +134,66 @@ LOG_ROOT = get_log_path()
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
 ]
+
+AUTH_USER_MODEL = 'account.User'
+
+
+LOG_LEVEL = env.str('LOG_LEVEL', default='ERROR')
+
+LOG_FORMAT = '%(levelname)s %(asctime)s %(pathname)s %(funcName)s %(lineno)s : %(message)s'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': LOG_FORMAT
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': logging.INFO,
+            'class': 'kungfucms.logging.handlers.FileHandler',
+            'formatter': 'verbose',
+            'filename': get_log_file(),
+        },
+        'console': {
+            'level': logging.DEBUG,
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+        'db': {
+            'level': logging.ERROR,
+            'class': 'kungfucms.logging.handlers.DBHandler',
+        }
+    },
+    'loggers': {
+        'kungfucms': {
+            'handlers': ['mail_admins', 'console', 'db', 'file'],
+            'level': LOG_LEVEL,
+            'propagate': False
+        },
+        'django': {
+            'handlers': ['mail_admins', 'console', 'db', 'file'],
+            'level': LOG_LEVEL,
+            'propagate': False
+        }
+    }
+}
+
 

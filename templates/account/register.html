@@ -1,20 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load i18n %}
 
-<form action="{% url 'account:register' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <input type="password" name="password_confirm">
+{% block title %}
+    {% trans 'kungfucms - register' %}
+{% endblock %}
 
-    <input type="submit">
-    
-</form>
+{% block head %}
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+    <div id="kf-content" class="kf-content">
+        <div id="kf-register" class="kf-register">
+            <form action="{% url 'account:register' %}" method="post" id="kf-register-form" class="kf-register-form form-control">
+                <div class="form-group">
+                    <label for="">{% trans 'username' %}</label>
+                    <input type="text" class="form-control">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
