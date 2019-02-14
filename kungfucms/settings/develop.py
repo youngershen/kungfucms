@@ -14,7 +14,9 @@ DEBUG = env('DEBUG', default=True)
 
 ALLOWED_HOSTS = ['*']
 
-ASSETS_ROOT = os.path.join(BASE_DIR, 'assets')
+ASSETS_ROOT = os.path.join(BASE_DIR, 'assetss')
+
+print(ASSETS_ROOT)
 
 DATABASES = {
     'default': env.db(),

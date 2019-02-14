@@ -38,3 +38,27 @@ def get_media_root():
     path = env.str('MEDIA_ROOT')
     return path if path.startswith('/') else os.path.join(get_base_path(), path)
 
+
+def get_theme_dir():
+    env = get_env()
+    theme_name = env.str('THEME', 'kungfucms.themes.default')
+
+    try:
+        from importlib import import_module
+        theme = import_module(theme_name)
+    except ModuleNotFoundError as e:
+        msg = "theme {THEME} is not found, please check out."
+        raise ModuleNotFoundError(msg.format(THEME=theme_name))
+    else:
+        theme_path = os.path.dirname(theme.__file__)
+        return theme_path
+
+
+def get_theme_template_dir():
+    theme_path = get_theme_dir()
+    return os.path.join(theme_path, 'templates')
+
+
+def get_theme_static_dir():
+    theme_path = get_theme_dir()
+    return os.path.join(theme_path, 'static')

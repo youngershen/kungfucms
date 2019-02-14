@@ -23,6 +23,8 @@ from kungfucms.apps.exception.views import exception_handler400, \
     exception_handler404, \
     exception_handler500
 
+from kungfucms.utils import get_theme_static_dir
+
 urlpatterns = [
     path('account/', include(('kungfucms.apps.account.urls', 'account'), namespace='account')),
     path('admin/', admin.site.urls),
@@ -34,5 +36,6 @@ handler404 = exception_handler404
 handler500 = exception_handler500
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.ASSETS_ROOT)
+    static_dir = get_theme_static_dir()
+    urlpatterns += static(settings.STATIC_URL, document_root= static_dir)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
