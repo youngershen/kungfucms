@@ -15,13 +15,14 @@ import logging
 import pymysql
 
 from kungfucms.logging.utils import get_log_file
-from kungfucms.utils import get_base_path, get_env, get_media_root
+from kungfucms.utils import get_base_path, get_env, get_media_root, get_theme_template_dir, get_theme_static_dir
 from kungfucms.logging.utils import get_log_path
 
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = get_base_path()
+
 ENV_NAME = '.env'
 
 env = get_env(file_name=ENV_NAME)
@@ -63,13 +64,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'kungfucms.urls'
 
-TEMPLATES_DIR = 'templates'
+TEMPLATES_DIR = get_theme_template_dir()
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, TEMPLATES_DIR)],
-        'APP_DIRS': True,
+        'DIRS': [TEMPLATES_DIR],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -131,9 +131,9 @@ MEDIA_ROOT = get_media_root()
 
 LOG_ROOT = get_log_path()
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets'),
-]
+STATIC_DIR = get_theme_static_dir()
+
+STATICFILES_DIRS = [ STATIC_DIR, ]
 
 AUTH_USER_MODEL = 'account.User'
 
