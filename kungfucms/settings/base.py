@@ -133,7 +133,7 @@ LOG_ROOT = get_log_path()
 
 STATIC_DIR = get_theme_static_dir()
 
-STATICFILES_DIRS = [ STATIC_DIR, ]
+STATICFILES_DIRS = [STATIC_DIR, ]
 
 AUTH_USER_MODEL = 'account.User'
 

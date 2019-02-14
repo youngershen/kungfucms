@@ -5,6 +5,7 @@ LANGUAGE_CODE=zh-hans
 TIME_ZONE=Asia/Shanghai
 DATABASE_URL=mysql://root:root@127.0.0.1:3306/kungfucms
 CACHE_REDIS_URL=redis://127.0.0.1:6379/1
+THEME=kungfucms.themes.default
 LOG_LEVEL=ERROR
 LOG_DIR=/var/log/kungfucms
 MEDIA_ROOT=/opt/kungfucms/upload
