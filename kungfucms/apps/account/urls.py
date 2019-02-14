@@ -6,8 +6,9 @@
 # WECHAT : 13811754531
 # WEB : https://youngershen.com
 from django.urls import path
-from kungfucms.apps.account.views import register
+from kungfucms.apps.account.views import register, login
 
 urlpatterns = [
     path('register', register, name='register'),
+    path('login', login, name='login')
 ]
