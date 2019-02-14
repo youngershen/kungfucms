@@ -41,11 +41,11 @@ def get_media_root():
 
 def get_theme_dir():
     env = get_env()
-    theme_name = env.str('THEME', 'kungfucms.themes.default')
+    theme_name = env.str('THEME', )
 
     try:
         from importlib import import_module
-        theme = import_module(theme_name)
+        theme = import_module(theme_name if theme_name else 'kungfucms.themes.default')
     except ModuleNotFoundError as e:
         msg = "theme {THEME} is not found, please check out."
         raise ModuleNotFoundError(msg.format(THEME=theme_name))
