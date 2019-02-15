@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load i18n %}
 
 {% block title %}
-    {% trans 'kungfucms - register' %}
+    {% trans 'kungfucms - login' %}
 {% endblock %}
 
 {% block head %}
+    <script src="{% static 'js/account/sign-in.js' %}"></script>
 {% endblock %}
 
 {% block content %}
     <div id="kf-content" class="kf-content row justify-content-md-center my-5">
-        <div id="kf-register" class="kf-register col-md-4 bg-light border-success py-4 px-4 rounded">
-            <form action="{% url 'account:register' %}" method="post" id="kf-register-form" class="kf-register-form">
+        <div id="kf-login" class="kf-login col-md-4 bg-light border-success py-4 px-4 rounded">
+            <form action="{% url 'account:sign-in' %}" method="post" id="kf-login-form" class="kf-login-form">
                 {% csrf_token %}
                 <div class="form-group row">
                     <label for="kf-username" class="col-sm-4 col-form-label">{% trans 'Username' %}</label>
@@ -20,7 +22,7 @@
                     </div>
 
                 </div>
-                <div class="form-group row ml-3 mr-1 d-nones" >
+                <div class="form-group row ml-3 mr-1 d-none">
                     <div class="alert alert-warning offset-sm-4 col-sm-8 " role="alert">
                         {% trans 'Username already exists' %}
                     </div>
@@ -32,12 +34,14 @@
                                name="password">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="kf-password-confirm"
-                           class="col-sm-4 col-form-label">{% trans 'Password Confirm' %}</label>
-                    <div class="col-sm-8">
-                        <input type="password" class="form-control" id="kf-password-confirm"
-                               placeholder="Password Confirm" name="password_confirm">
+                <div class="form-group row ml-3 mr-1 d-none">
+                    <div class="alert alert-warning offset-sm-4 col-sm-8 " role="alert">
+                        {% trans 'Username already exists' %}
+                    </div>
+                </div>
+                <div class="form-group row ml-3 mr-1 d-none">
+                    <div class="alert alert-warning offset-sm-4 col-sm-8 " role="alert">
+                        {% trans 'Username already exists' %}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -48,18 +52,19 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <div class="col-sm-8">
-                        <span> Already have an account ? click <a
-                                href="{% url 'account:login' %}">here</a> to login</span>
+                        <span> Don't have an account ? click <a
+                                href="{% url 'account:sign-up' %}">here</a> to sign up.</span>
                     </div>
                 </div>
                 <div class="form-group row justify-content-center my-4">
                     <div class="col-sm-3">
-                        <button type="submit" class="btn btn-primary">{% trans 'Sing Up' %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans 'Sign Up' %}</button>
                     </div>
                     <div class="col-sm-3">
-                        <button type="submit" class="btn btn-primary">{% trans 'Reset All' %}</button>
+                        <button type="button" class="btn btn-primary">{% trans 'Reset All' %}</button>
                     </div>
                 </div>
             </form>

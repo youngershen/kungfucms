@@ -35,3 +35,14 @@ class UsernameRegister(Validator):
 
 class CellphoneRegister(Validator):
     pass
+
+
+class UsernameExists(Validator):
+    username = 'required|unique:AUTH_USER_MODEL,username|min_length:5'
+    messages = {
+        'username': {
+            'required': _('username is required'),
+            'unique': _('username already exists'),
+            'min_length': _('the length of username must greater than 5')
+        },
+    }

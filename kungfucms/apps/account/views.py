@@ -1,10 +1,13 @@
 import logging
+from django.urls import reverse
 from kungfucms.apps.system.views import Default as DefaultView
+from kungfucms.apps.account.validators import UsernameExists
 logger = logging.getLogger(__name__)
 
 
-class Register(DefaultView):
-    template_name = 'account/register.html'
+class SignUp(DefaultView):
+    template_name = 'account/sign-up.html'
+    http_method_names = ['get', 'post']
 
     def permission(self, request):
         return True, None
@@ -19,11 +22,36 @@ class Register(DefaultView):
         return self.to_template()
 
     def post_context(self, request, *args, **kwargs):
-        return self.to_json({'test':'fuck'})
+        sign_in_url = reverse('account:sign-in')
+        return self.redirect(sign_in_url)
 
 
-class Login(DefaultView):
-    pass
+class SingIn(DefaultView):
+    template_name = 'account/sign-in.html'
+    http_method_names = ['get', 'post']
+
+    def post_context(self, request, *args, **kwargs):
+        return self.redirect('')
+
+
+class CheckUserNameExists(DefaultView):
+    http_method_names = ['post']
+    validator = UsernameExists
+
+    def post_context(self, request, *args, **kwargs):
+        validator = self.validator(request.POST)
+
+        if validator.validate():
+            retval = {
+                'status': 0,
+            }
+            return self.to_json(retval)
+        else:
+            retval = {
+                'status': 1,
+                'message': validator.get_message()
+            }
+            return self.to_json(retval)
 
 
 class ResetPassword(DefaultView):
@@ -42,8 +70,9 @@ class DeleteUser(DefaultView):
     pass
 
 
-register = Register.as_view()
-login = Login.as_view()
+sign_up = SignUp.as_view()
+sign_in = SingIn.as_view()
+check_username = CheckUserNameExists.as_view()
 reset_password = ResetPassword.as_view()
 change_password = ChangePassword.as_view()
 active_user = ActiveUser.as_view()
