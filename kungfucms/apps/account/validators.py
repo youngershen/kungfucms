@@ -37,7 +37,7 @@ class CellphoneRegister(Validator):
     pass
 
 
-class UsernameExists(Validator):
+class CheckUsername(Validator):
     username = 'required|unique:AUTH_USER_MODEL,username|min_length:5'
     messages = {
         'username': {

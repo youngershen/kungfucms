@@ -1,7 +1,7 @@
 import logging
 from django.urls import reverse
 from kungfucms.apps.system.views import Default as DefaultView
-from kungfucms.apps.account.validators import UsernameExists
+from kungfucms.apps.account.validators import CheckUsername as CheckUserNameValidator
 logger = logging.getLogger(__name__)
 
 
@@ -34,9 +34,9 @@ class SingIn(DefaultView):
         return self.redirect('')
 
 
-class CheckUserNameExists(DefaultView):
-    http_method_names = ['post']
-    validator = UsernameExists
+class CheckUsername(DefaultView):
+    http_method_names = ['post', ]
+    validator = CheckUserNameValidator
 
     def post_context(self, request, *args, **kwargs):
         validator = self.validator(request.POST)
@@ -72,7 +72,7 @@ class DeleteUser(DefaultView):
 
 sign_up = SignUp.as_view()
 sign_in = SingIn.as_view()
-check_username = CheckUserNameExists.as_view()
+check_username = CheckUsername.as_view()
 reset_password = ResetPassword.as_view()
 change_password = ChangePassword.as_view()
 active_user = ActiveUser.as_view()
