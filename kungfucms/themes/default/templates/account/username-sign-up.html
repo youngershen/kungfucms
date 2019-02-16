@@ -3,17 +3,17 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans 'kungfucms - Sign In' %}
+    {% trans 'kungfucms - Sign Up' %}
 {% endblock %}
 
 {% block head %}
-    <script src="{% static 'js/account/sign-in.js' %}"></script>
+    <script src="{% static 'js/account/sign-up.js' %}"></script>
 {% endblock %}
 
 {% block content %}
     <div id="kf-content" class="kf-content row justify-content-md-center my-5">
-        <div id="kf-sign-in" class="kf-sign-in col-md-4 bg-light border-success py-4 px-4 rounded">
-            <form action="{% url 'account:sign-in' %}" method="post" id="kf-sign-in-form" class="kf-sign-in-form">
+        <div id="kf-sign-up" class="kf-sign-up col-md-4 bg-light border-success py-4 px-4 rounded">
+            <form action="{% url 'account:sign-up' %}" method="post" id="kf-sign-up-form" class="kf-sign-up-form">
                 {% csrf_token %}
                 <div class="form-group row">
                     <label for="kf-username" class="col-sm-4 col-form-label">{% trans 'Username' %}</label>
@@ -39,24 +39,23 @@
                         {% trans 'Username already exists' %}
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="kf-password-confirm"
+                           class="col-sm-4 col-form-label">{% trans 'Password Confirm' %}</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" id="kf-password-confirm"
+                               placeholder="Password Confirm" name="password_confirm">
+                    </div>
+                </div>
                 <div class="form-group row ml-3 mr-1 d-none">
                     <div class="alert alert-warning offset-sm-4 col-sm-8 " role="alert">
                         {% trans 'Username already exists' %}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-4">{% trans 'Remember Me' %}</div>
                     <div class="col-sm-8">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="kf-remembe-me" name="remember_me">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-8">
-                        <span> Don't have an account ? click <a
-                                href="{% url 'account:sign-up' %}">here</a> to sign up.</span>
+                        <span> Already have an account ? click <a
+                                href="{% url 'account:sign-in' %}">here</a> to sign in.</span>
                     </div>
                 </div>
                 <div class="form-group row justify-content-center my-4">
