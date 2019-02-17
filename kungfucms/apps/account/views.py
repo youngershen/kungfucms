@@ -1,9 +1,15 @@
 import logging
+from django.utils.translation import ugettext as _
 from django.urls import reverse
+from django.contrib.auth import login, logout
 from kungfucms.apps.system.views import Default as DefaultView
 from kungfucms.apps.account.validators import CheckUsername as CheckUserNameValidator,\
     CheckCellphone as CheckCellphoneValidator, \
-    CheckEmail as CheckEmailValidator
+    CheckEmail as CheckEmailValidator, \
+    UsernameSignUp
+from kungfucms.apps.account.models import User
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -21,19 +27,48 @@ class SignUp(DefaultView):
         return self.permission(request)
 
     def get_context(self, request, *args, **kwargs):
-        return self.to_template()
+        message = self.get_message()
+        return self.to_template(context={'message': message})
 
     def post_context(self, request, *args, **kwargs):
-        sign_in_url = reverse('account:sign-in')
-        return self.redirect(sign_in_url)
+        validator = UsernameSignUp(request.POST)
+
+        if validator.validate():
+            username = validator.get('username')
+            password = validator.get('password')
+            self.create_user(username, password)
+            url = reverse('account:sign-in')
+            message = {
+                'message': _('sign up succeed please login.')
+            }
+            return self.redirect(url, message=message)
+
+        else:
+            url = reverse('account:sign-up')
+            message = validator.get_message()
+            return self.redirect(url, message=message)
+
+    @staticmethod
+    def create_user(username, password):
+        user = User.objects.create_user(username=username, password=password)
+        return user
 
 
 class SingIn(DefaultView):
     template_name = 'account/sign-in.html'
     http_method_names = ['get', 'post']
 
+    def get_context(self, request, *args, **kwargs):
+        message = self.get_message()
+        print(message)
+        return self.to_template(context=message)
+
     def post_context(self, request, *args, **kwargs):
         return self.redirect('')
+
+    @staticmethod
+    def login_user(request, user):
+        login(request, user)
 
 
 class CheckUserToken(DefaultView):

@@ -15,6 +15,15 @@
         <div id="kf-sign-in" class="kf-sign-in col-md-4 bg-light border-success py-4 px-4 rounded">
             <form action="{% url 'account:sign-in' %}" method="post" id="kf-sign-in-form" class="kf-sign-in-form">
                 {% csrf_token %}
+                {% if message %}
+                    <div class="form-group row ml-3 mr-1 d-nsone justify-content-md-center">
+                        <div class="alert alert-warning col-sm-8 " role="alert">
+                            {{ message }}
+                        </div>
+                    </div>
+                {% endif %}
+
+
                 <div class="form-group row">
                     <label for="kf-username" class="col-sm-4 col-form-label">{% trans 'Username' %}</label>
                     <div class="col-sm-8">
