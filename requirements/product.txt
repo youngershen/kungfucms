@@ -14,4 +14,6 @@ django-celery-beat
 django-celery-results
 django-redis
 eventlet
+markdown
+django-filter
 djangorestframework

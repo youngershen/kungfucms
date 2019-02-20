@@ -49,7 +49,8 @@ INSTALLED_APPS = [
 
     'kungfucms.apps.system',
     'kungfucms.apps.account',
-    'kungfucms.apps.exception'
+    'kungfucms.apps.exception',
+    'captcha'
 ]
 
 MIDDLEWARE = [
