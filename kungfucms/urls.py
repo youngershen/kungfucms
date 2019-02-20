@@ -27,7 +27,7 @@ from kungfucms.utils import get_theme_static_dir
 
 urlpatterns = [
     path('account/', include(('kungfucms.apps.account.urls', 'account'), namespace='account')),
-    path('captcha/', include(('captcha.urls', 'captcha'), namespace='captcha')),
+    path('captcha/', include(('decaptcha.urls', 'captcha'), namespace='captcha')),
     path('admin/', admin.site.urls),
 ]
 

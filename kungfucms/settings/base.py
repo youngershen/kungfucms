@@ -47,10 +47,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'decaptcha',
+    'rest_framework',
+    'django_filters',
+
     'kungfucms.apps.system',
     'kungfucms.apps.account',
     'kungfucms.apps.exception',
-    'captcha'
 ]
 
 MIDDLEWARE = [

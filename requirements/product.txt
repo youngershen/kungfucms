@@ -16,4 +16,5 @@ django-redis
 eventlet
 markdown
 django-filter
+django-guardiand
 djangorestframework
