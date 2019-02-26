@@ -86,22 +86,17 @@ class Profile(BaseModel):
         verbose_name_plural = _('Profiles')
 
 
-class SocialLoginToken(BaseModel):
-    qq = models.CharField(max_length=255, unique=True, verbose_name=_('QQ Token'))
-    wechat = models.CharField(max_length=255, unique=True, verbose_name=_('Wechat Token'))
-    facebook = models.CharField(max_length=255, unique=True, verbose_name=_('Facebook Token'))
-    tiwtter = models.CharField(max_length=255, unique=True, verbose_name=_('Twitter Token'))
-    google = models.CharField(max_length=255, unique=True, verbose_name=_('Google Token'))
-
-    user = models.OneToOneField(User,
-                                related_name='social_login_token',
-                                related_query_name='social_login_token',
-                                blank=True,
-                                null=True,
-                                on_delete=models.SET_NULL)
+class OauthLoginProvider(BaseModel):
+    provider = models.CharField(max_length=255, db_index=True, verbose_name=_('Provider Name'))
+    token = models.CharField(max_length=255, db_index=True, verbose_name=_('Provider Token'))
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE,
+                             related_query_name='oauth_token',
+                             related_name='oauth_tokens',
+                             verbose_name=_('User'))
 
     class Meta:
-        ordering = ['id']
-        verbose_name = _('Social Login Token')
-        verbose_name_plural = _('Social Login Token')
-
+        verbose_name = _('Oauth Login Provider')
+        verbose_name_plural = _('Oauth Login Providers')
+        unique_together = ('provider', 'token', 'user')
+        indexes = [models.Index(fields=('user', 'provider'))]
