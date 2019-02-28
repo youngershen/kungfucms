@@ -20,5 +20,7 @@ urlpatterns = [
     path('check-cellphone', check_cellphone, name='check-cellphone'),
     path('check-email', check_email, name='check-email'),
     path('change-password', change_password, name='change-password')
-
 ]
+
+
+app_name = 'account'

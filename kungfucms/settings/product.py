@@ -27,3 +27,4 @@ CACHES = {
 }
 
 SITE_NAME = 'Kungfucms'
+
