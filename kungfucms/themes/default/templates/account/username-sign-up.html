@@ -8,6 +8,8 @@
 
 {% block head %}
     <meta name="CAPTCHA_URL" content="{% url 'decaptcha:get' %}">
+    <meta name="CHECKUSERNAME_URL" content="{% url 'account:check-username' %}">
+
 
     <script src="{% static 'js/account/sign-up.js' %}"></script>
     <script>
@@ -15,6 +17,7 @@
 
             kungfucms.hook_submit_button_onclick();
             kungfucms.captcha_onclick();
+            kungfucms.username_onchange();
 
         });
 
@@ -46,8 +49,8 @@
                     </div>
 
                 </div>
-                <div class="form-group row ml-3 mr-1 d-none">
-                    <div class="alert alert-warning offset-sm-4 col-sm-8 " role="alert">
+                <div class="form-group row ml-3 mr-1 d-none" id="kf-username-warning-messsage-box">
+                    <div class="alert alert-warning offset-sm-4 col-sm-8 " role="alert" id="kf-username-warning-messsage">
                         {% trans 'Username already exists' %}
                     </div>
                 </div>
