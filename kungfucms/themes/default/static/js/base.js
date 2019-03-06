@@ -9,6 +9,12 @@
         window.kungfucms = kungfucms;
     }
 
+    function get_meta_content(name)
+    {
+        let query = 'meta[name="' + name + '"]';
+        return  $(query).attr('content');
+    }
+
     function get_csrf_token() {
         return $('meta[name="CSRF_TOKEN"]').attr('content');
     }
@@ -38,5 +44,6 @@
     kungfucms.get_csrf_token = get_csrf_token;
     kungfucms.ajax_setup = ajax_setup;
     kungfucms.ajax = ajax;
+    kungfucms.get_meta_content = get_meta_content;
 
 })(window, $);

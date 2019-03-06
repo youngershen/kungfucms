@@ -60,11 +60,23 @@
         });
     }
 
+    function captcha_onclick()
+    {
+        $('#kf-captcha-box').click(function(e){
+            let url = kungfucms.get_meta_content('CAPTCHA_URL');
+            let rand = Math.random();
+
+            $('#kf-captcha-image').attr('src', url + '?rand=' + rand);
+            console.log(e);
+        })
+    }
+
     kungfucms.check_username = check_username;
     kungfucms.check_email = check_email;
     kungfucms.check_cellphone = check_cellphone;
     kungfucms.update_submit_button_status = update_submit_button_status;
     kungfucms.hook_submit_button_onclick = hook_submit_button_onclick;
+    kungfucms.captcha_onclick = captcha_onclick;
 
 
 })(window, $);
