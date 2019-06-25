@@ -47,3 +47,13 @@ class LogRecord(BaseModel):
 
     class Meta:
         ordering = ['-id']
+
+
+class Setting(BaseModel):
+    name = models.CharField(max_length=128, unique=True, verbose_name=_('Name'))
+    value = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Value'))
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = _('Setting')
+        verbose_name_plural = _('Settings')

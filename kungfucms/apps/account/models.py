@@ -134,3 +134,6 @@ class OauthLoginProvider(BaseModel):
         verbose_name_plural = _('Oauth Login Providers')
         unique_together = ('provider', 'token', 'user')
         indexes = [models.Index(fields=('user', 'provider'))]
+
+
+
