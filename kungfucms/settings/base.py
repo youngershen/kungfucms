@@ -141,11 +141,12 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 
 AUTH_USER_MODEL = 'account.User'
 
+INIT_SUPERUSER_NAME = env.str('DEFAULT_SUPERUSER_NAME', 'youngershen')
+INIT_SUPERUSER_PASSWORD = env.str('DEFAULT_SUPERUSER_PASSWORD', 'abc1234cba')
 
 LOG_LEVEL = env.str('LOG_LEVEL', default='ERROR')
 
 LOG_FORMAT = '%(levelname)s %(asctime)s %(pathname)s %(funcName)s %(lineno)s : %(message)s'
-
 
 LOGGING = {
     'version': 1,

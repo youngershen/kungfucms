@@ -93,6 +93,14 @@ class User(AbstractUser, BaseModel):
     def get_username_field(self):
         return self.USERNAME_FIELD
 
+    @classmethod
+    def safe_get(cls, **kwargs):
+        try:
+            obj = cls.objects.get(**kwargs)
+        except cls.DoesNotExist:
+            obj = None
+        return obj
+
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
         verbose_name = _('User')
@@ -134,6 +142,5 @@ class OauthLoginProvider(BaseModel):
         verbose_name_plural = _('Oauth Login Providers')
         unique_together = ('provider', 'token', 'user')
         indexes = [models.Index(fields=('user', 'provider'))]
-
 
 

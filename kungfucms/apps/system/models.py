@@ -16,10 +16,11 @@ class BaseModel(models.Model):
     deleted_at = models.DateTimeField(blank=True, null=True, verbose_name=_('deleted time'))
     is_deleted = models.BooleanField(default=False)
 
-    def safe_get(self, **kwargs):
+    @classmethod
+    def safe_get(cls, **kwargs):
         try:
-            obj = self.objects.get(**kwargs)
-        except self.DoesNotExist:
+            obj = cls.objects.get(**kwargs)
+        except cls.DoesNotExist:
             obj = None
         return obj
 
