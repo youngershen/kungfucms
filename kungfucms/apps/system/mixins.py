@@ -99,7 +99,6 @@ class Permission:
 
     @staticmethod
     def _is_login(request):
-        print(request.user.is_authenticated)
         return request.user.is_authenticated
 
 

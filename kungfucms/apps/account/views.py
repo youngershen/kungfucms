@@ -17,7 +17,8 @@ class SignUp(DefaultView):
     template_name = 'account/sign-up.html'
     http_method_names = ['get', 'post']
 
-    def permission(self, request):
+    @staticmethod
+    def permission(request):
         return True, None
 
     def get_permission(self, request):

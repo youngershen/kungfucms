@@ -45,7 +45,7 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
             'unique': _("A user with that username already exists."),
         },
     )
-    email = models.EmailField(_('email address'), blank=True)
+
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
@@ -63,9 +63,7 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
 
     class Meta:
         verbose_name = _('user')
@@ -74,7 +72,6 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
 
     def clean(self):
         super().clean()
-        self.email = self.__class__.objects.normalize_email(self.email)
 
     def get_full_name(self):
         full_name = '%s %s' % (self.first_name, self.last_name)
@@ -83,27 +80,11 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.first_name
 
-    def email_user(self, subject, message, from_email=None, **kwargs):
-        send_mail(subject, message, from_email, [self.email], **kwargs)
-
 
 class User(AbstractUser, BaseModel):
     username = models.CharField(max_length=128,
                                 unique=True,
                                 verbose_name=_('Username'))
-
-    email = models.EmailField(db_index=True,
-                              blank=True,
-                              null=True,
-                              default='',
-                              verbose_name=_('Email'), )
-
-    cellphone = models.CharField(max_length=128,
-                                 db_index=True,
-                                 blank=True,
-                                 null=True,
-                                 default='',
-                                 verbose_name=_('Cellphone'), )
 
     USERNAME_FIELD = 'username'
 
@@ -111,12 +92,6 @@ class User(AbstractUser, BaseModel):
 
     def get_username_field(self):
         return self.USERNAME_FIELD
-
-    def email_user(self, subject, message, from_email=None, **kwargs):
-        pass
-
-    def text_user(self):
-        pass
 
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'

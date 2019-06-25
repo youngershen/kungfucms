@@ -30,7 +30,6 @@
             <form action="{% url 'account:sign-up' %}" method="post" id="kf-sign-up-form" class="kf-sign-up-form">
                 {% csrf_token %}
 
-                {% csrf_token %}
                 {% if message %}
                     <div class="form-group row ml-3 mr-1 d-nsone justify-content-md-center">
                         <div class="alert alert-warning col-sm-8 " role="alert">
@@ -110,7 +109,7 @@
                     </div>
                     <div class="col-sm-3">
                         <button type="button" class="btn btn-primary"
-                                id="kf-form-resetall-btn">{% trans 'Reset All' %}</button>
+                                id="kf-form-resetall-btn">{% trans 'Reset' %}</button>
                     </div>
                 </div>
             </form>
