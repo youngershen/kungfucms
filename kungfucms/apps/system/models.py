@@ -4,7 +4,7 @@
 # EMAIL : younger.x.shen@gmail.com
 # CELL : 13811754531
 # WECHAT : 13811754531
-# WEB : https://youngershen.com
+# WEB : https://punkcoder.cn
 
 from django.utils.translation import ugettext as _
 from django.db import models

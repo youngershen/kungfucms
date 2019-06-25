@@ -4,7 +4,7 @@
 # EMAIL : younger.x.shen@gmail.com
 # CELL : 13811754531
 # WECHAT : 13811754531
-# WEB : https://youngershen.com
+# WEB : https://punkcoder.cn
 from django.conf import settings as _settings
 
 
