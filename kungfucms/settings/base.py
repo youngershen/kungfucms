@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'decaptcha',
+    # 'decaptcha',
     'rest_framework',
     'django_filters',
 
