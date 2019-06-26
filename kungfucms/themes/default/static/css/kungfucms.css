@@ -8,3 +8,48 @@ body
 {
     margin: 0;
 }
+
+.kf-signin-content
+{
+}
+
+.kf-footer
+{
+    background-color: #000;
+    color: #fff;
+    /*padding: 1rem;*/
+    padding-top: 1rem;
+}
+
+.kf-footer-content
+{
+
+}
+
+.kf-footer-content-body
+{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.kf-footer-content-header
+{
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+}
+
+.kf-footer-content-body > ol
+{
+    list-style: none;
+    padding: 0;
+}
+
+.kf-footer-content-body > ol >li
+{
+    margin-bottom: .1rem;
+}
+
+.kf-footer-bottom-body > span
+{
+    margin-right: 1rem;
+}
