@@ -20,8 +20,8 @@ from django.conf.urls.static import static
 
 from kungfucms.apps.exception.views import exception_handler400, \
     exception_handler403, \
-    exception_handler404, \
-    exception_handler500
+    exception_handler404
+    # exception_handler500
 from kungfucms.utils import get_theme_static_dir
 
 
@@ -34,9 +34,11 @@ urlpatterns = [
 handler400 = exception_handler400
 handler403 = exception_handler403
 handler404 = exception_handler404
-handler500 = exception_handler500
+# handler500 = exception_handler500
 
 if settings.DEBUG:
+    import debug_toolbar
     static_dir = get_theme_static_dir()
     urlpatterns += static(settings.STATIC_URL, document_root=static_dir)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]

@@ -1,6 +1,6 @@
 django>=2.2.3
 django-environ
-pymysql
+mysqlclient
 django-easy-validator
 celery
 requests
