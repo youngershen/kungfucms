@@ -3,9 +3,9 @@ body
     margin:0 !important;
     padding: 0 !important;
     font-family: "Microsoft YaHei", Arial, "Courier New", Courier, Helvetica, monospace !important;
-    font-size: 100%;
-    font-weight: 400;
-    line-height: 1.5rem;
+    font-size: 100% !important;
+    font-weight: 400 !important;
+    line-height: 1.5rem !important;
 }
 
 .kf-navbar
@@ -13,9 +13,6 @@ body
     margin: 0;
 }
 
-.kf-signin-content
-{
-}
 
 .kf-footer
 {
@@ -50,4 +47,41 @@ body
 .kf-footer-bottom-body > span
 {
     margin-right: 1rem;
+}
+
+.kf-signin
+{
+    margin: 40px 10px;
+}
+
+.kf-signin-message
+{
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.kf-signin-title
+{
+    display: block;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.kf-signin-form-control
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kf-signin-form-submit-button
+{
+    width: 100%;
+}
+
+.kf-signin-form-wrap
+{
+    margin-top: 20px;
 }
