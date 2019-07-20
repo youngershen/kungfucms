@@ -1,7 +1,7 @@
 import logging
 from django.utils.translation import ugettext as _
 from django.urls import reverse
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from kungfucms.apps.system.views import Default as DefaultView
 from kungfucms.apps.account.validators import CheckUsername as CheckUserNameValidator,\
     CheckCellphone as CheckCellphoneValidator, \
@@ -59,17 +59,32 @@ class SingIn(DefaultView):
     template_name = 'account/sign-in.html'
     http_method_names = ['get', 'post']
 
+    def get_permission(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            redirect = self.redirect('/')
+            return False, redirect
+        else:
+            return True, None
+
     def get_context(self, request, *args, **kwargs):
         message = self.get_message()
-        print(message)
         return self.to_template(context=message)
 
     def post_context(self, request, *args, **kwargs):
-        return self.redirect('')
+        message = None
+        if self.login_user(request):
+            url = '/'
+        else:
+            message = {'message': '用户名或密码错误'}
+            url = reverse('account:sign-in')
+        return self.redirect(url, message=message)
 
     @staticmethod
-    def login_user(request, user):
-        login(request, user)
+    def login_user(request):
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
+        user = authenticate(request, username=username, password=password)
+        return user
 
 
 class CheckUserToken(DefaultView):

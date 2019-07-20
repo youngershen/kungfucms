@@ -15,10 +15,13 @@
     <div class="row justify-content-center kf-signin">
         <div class="col-lg-3 col-md-4 col-sm-4 kf-signin-row">
             <span class="kf-signin-title">{% trans '登陆' %}</span>
-            <span class="kf-signin-message alert alert-warning d-snone" role="alert">账号或密码错误</span>
+            {% if message %}
+                <span class="kf-signin-message alert alert-warning d-snone" role="alert">{{ message }}</span>
+            {% endif %}
 
             <div class="kf-signin-form-wrap">
-                <form class="kf-signin-form">
+                <form class="kf-signin-form" action="{% url 'account:sign-in' %}" method="post">
+                    {% csrf_token %}
                     <div class="form-group">
                         <label for="username">{% trans '用户名' %}</label>
                         <input name="username" type="text" class="form-control" id="username" aria-describedby="usernameHelp"
