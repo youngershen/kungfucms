@@ -1,0 +1,13 @@
+import logging
+from django.utils.translation import ugettext as _
+from kungfucms.apps.system.views import Default as DefaultView
+
+logger = logging.getLogger(__name__)
+
+
+class Sample(DefaultView):
+    template_name = 'sample.html'
+    http_method_names = ['get', 'post']
+
+
+sample = Sample.as_view()

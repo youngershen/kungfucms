@@ -8,6 +8,17 @@ from kungfucms.settings.base import *
 
 DEBUG = False
 
+INSTALLED_APPS += [
+    'decaptcha',
+    'rest_framework',
+    'django_filters',
+
+    'kungfucms.apps.system',
+    'kungfucms.apps.account',
+    'kungfucms.apps.exception',
+    'kungfucms.apps.dashboard'
+]
+
 DOMAIN_NAME = env.list('DOMAIN_NAME', default='localhost')
 
 ALLOWED_HOSTS = ['*']

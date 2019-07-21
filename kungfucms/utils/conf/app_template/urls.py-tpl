@@ -1,0 +1,16 @@
+# PROJECT : kungfucms
+# TIME : 2019/7/21 10:19
+# AUTHOR : Younger Shen
+# EMAIL : shenyangang@163.com
+# CELL : 13811754531
+# WECHAT : 13811754531
+# WEB : https://punkcoder.cn
+from django.urls import path
+from kungfucms.apps.{{ app_name }}.views import sample
+
+urlpatterns = [
+    path('sample', sample, name='sample'),
+]
+
+
+app_name = '{{ app_name }}'
