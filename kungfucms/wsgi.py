@@ -1,11 +1,10 @@
-"""
-WSGI config for kungfu project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/
-"""
+# PROJECT : kungfucms
+# TIME : 2018/11/19 15:25
+# AUTHOR : Younger Shen
+# EMAIL : younger.x.shen@gmail.com
+# CELL : 13811754531
+# WECHAT : 13811754531
+# https://github.com/youngershen/
 
 import os
 
