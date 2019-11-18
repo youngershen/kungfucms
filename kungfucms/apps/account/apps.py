@@ -5,6 +5,7 @@
 # CELL : 13811754531
 # WECHAT : 13811754531
 # https://github.com/youngershen/
+
 from django.apps import AppConfig
 from django.db.models.signals import post_migrate
 
