@@ -14,6 +14,7 @@ from kungfucms.apps.account.views import sign_up, \
     check_email, \
     change_password
 
+
 urlpatterns = [
     path('sign-up', sign_up, name='sign-up'),
     path('sign-in', sign_in, name='sign-in'),
@@ -22,6 +23,5 @@ urlpatterns = [
     path('check-email', check_email, name='check-email'),
     path('change-password', change_password, name='change-password')
 ]
-
 
 app_name = 'account'

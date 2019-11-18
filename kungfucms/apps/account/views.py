@@ -138,6 +138,10 @@ class DeleteUser(DefaultView):
     pass
 
 
+class BlockUser(DefaultView):
+    pass
+
+
 sign_up = SignUp.as_view()
 sign_in = SingIn.as_view()
 check_username = CheckUsername.as_view()
@@ -147,3 +151,4 @@ reset_password = ResetPassword.as_view()
 change_password = ChangePassword.as_view()
 active_user = ActiveUser.as_view()
 delete_user = DeleteUser.as_view()
+block_user = BlockUser.as_view()

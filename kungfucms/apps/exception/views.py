@@ -34,14 +34,10 @@ class ExceptionHandler404(BaseExceptionHandler):
 
 
 class ExceptionHandler500(BaseExceptionHandler):
-    http_status = 500
-
-
-def testfuck(request, *args, **kwargs):
-    pass
+    http_status = 404
 
 
 exception_handler400 = ExceptionHandler400.as_view()
 exception_handler403 = ExceptionHandler403.as_view()
 exception_handler404 = ExceptionHandler404.as_view()
-exception_handler500 = exception_handler404
+exception_handler500 = ExceptionHandler500.as_view()

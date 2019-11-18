@@ -13,8 +13,8 @@ from django.conf.urls.static import static
 
 from kungfucms.apps.exception.views import exception_handler400, \
     exception_handler403, \
-    exception_handler404
-    # exception_handler500
+    exception_handler404, \
+    exception_handler500
 from kungfucms.utils import get_theme_static_dir
 
 
@@ -22,6 +22,10 @@ urlpatterns = [
     path('account/', include('kungfucms.apps.account.urls')),
     path('captcha/', include('decaptcha.urls')),
     path('admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    path('api/account/', include('kungfucms.apps.account.api_urls')),
 ]
 
 handler400 = exception_handler400
