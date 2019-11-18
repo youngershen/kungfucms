@@ -6,7 +6,7 @@
 # WECHAT : 13811754531
 # https://github.com/youngershen/
 
-from kungfucms.apps.system.views import Default
+from kungfucms.apps.core.views import Default
 
 
 class BaseExceptionHandler(Default):

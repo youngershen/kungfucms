@@ -8,7 +8,7 @@
 
 from django.views.generic import View as DjangoView
 from django.views.generic.base import TemplateResponseMixin
-from kungfucms.apps.system.mixins import Context, \
+from kungfucms.apps.core.mixins import Context, \
     APIContext, \
     Response, \
     RedirectResponse, \

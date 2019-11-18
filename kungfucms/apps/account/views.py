@@ -10,7 +10,7 @@ import logging
 from django.utils.translation import ugettext as _
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
-from kungfucms.apps.system.views import Default as DefaultView
+from kungfucms.apps.core.views import Default as DefaultView
 from kungfucms.apps.account.validators import CheckUsername as CheckUserNameValidator,\
     CheckCellphone as CheckCellphoneValidator, \
     CheckEmail as CheckEmailValidator, \

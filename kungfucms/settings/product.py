@@ -16,7 +16,7 @@ INSTALLED_APPS += [
     'rest_framework',
     'django_filters',
     # local libs
-    'kungfucms.apps.system',
+    'kungfucms.apps.core',
     'kungfucms.apps.account',
     'kungfucms.apps.exception',
     'kungfucms.apps.dashboard'
