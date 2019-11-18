@@ -33,7 +33,7 @@ class FileHandler(BaseFileHandler):
 
 class DBHandler(Handler):
     def emit(self, record: LogRecord):
-        from kungfucms.apps.system.models import LogRecord as Record
+        from kungfucms.apps.core.models import LogRecord as Record
         traceback = self.format(record)
         message = record.getMessage()
         create_at = datetime.fromtimestamp(record.created)
