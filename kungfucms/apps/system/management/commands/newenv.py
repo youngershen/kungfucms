@@ -16,20 +16,20 @@ class Command(BaseCommand):
     default_name = 'dotenv'
     target_name = '.env'
 
-    help = _("通过这个命令来创建默认环境变量配置文件")
+    help = _("for creating the new env file")
 
     def add_arguments(self, parser):
         parser.add_argument('-f',
                             '--force',
                             action='store_true',
-                            help=_('强制覆盖已经存在的配置文件'))
+                            help=_('force overwrite exists env file'))
 
         parser.add_argument('-n',
                             '--name',
                             nargs='?',
                             const=self.target_name,
                             default=self.target_name,
-                            help=_('配置文件文件名'))
+                            help=_('name of env file'))
 
     def handle(self, *args, **options):
 
@@ -40,6 +40,6 @@ class Command(BaseCommand):
             if not os.path.exists(env_path) or options['force']:
                 shutil.copy(default_path, env_path)
             else:
-                raise CommandError(_("配置文件已存在: {PATH}").format(PATH=env_path))
+                raise CommandError(_("env file exists: {PATH}").format(PATH=env_path))
         else:
-            raise CommandError(_("默认配置文件不存在: {PATH}").format(PATH=default_path))
+            raise CommandError(_("default env file doesn't exist: {PATH}").format(PATH=default_path))
