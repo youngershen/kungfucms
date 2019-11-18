@@ -5,9 +5,10 @@
 # CELL : 13811754531
 # WECHAT : 13811754531
 # https://github.com/youngershen/
+
 import os
-import shutil
 from django.core.management.base import BaseCommand, CommandError
+from django.core.management.utils import get_random_secret_key
 from django.utils.translation import ugettext as _
 from django.conf import settings
 
@@ -32,13 +33,19 @@ class Command(BaseCommand):
                             help=_('name of env file'))
 
     def handle(self, *args, **options):
-
         default_path = os.path.join(settings.BASE_DIR, self.default_name)
         env_path = os.path.join(settings.BASE_DIR, options['name'])
+        secret = get_random_secret_key()
 
         if os.path.exists(default_path):
             if not os.path.exists(env_path) or options['force']:
-                shutil.copy(default_path, env_path)
+                try:
+                    c = open(default_path, 'rt', encoding="utf8").read()
+                    c = c.replace('your-secret-key', secret)
+                    f = open(env_path, 'wt', encoding='utf8')
+                    f.write(c)
+                except IOError:
+                    raise CommandError(_("io error when generating env file"))
             else:
                 raise CommandError(_("env file exists: {PATH}").format(PATH=env_path))
         else:
