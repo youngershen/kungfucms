@@ -19,10 +19,10 @@ def init_superuser(sender, **kwargs):
     user = User.safe_get(username=name)
 
     if user:
-        print("Default super user already exists")
+        print('Default super user already exists')
     else:
         user = User.objects.create_superuser(name, pwd)
-        print("Default super user created")
+        print('Default super user created')
 
     from django.contrib.auth.models import Group
     group = Group.objects.get(name='superuser')

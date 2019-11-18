@@ -17,7 +17,7 @@ class Command(BaseCommand):
     default_name = 'dotenv'
     target_name = '.env'
 
-    help = _("for creating the new env file")
+    help = _('for creating the new env file')
 
     def add_arguments(self, parser):
         parser.add_argument('-f',
@@ -45,8 +45,8 @@ class Command(BaseCommand):
                     f = open(env_path, 'wt', encoding='utf8')
                     f.write(c)
                 except IOError:
-                    raise CommandError(_("io error when generating env file"))
+                    raise CommandError(_('io error when generating env file'))
             else:
-                raise CommandError(_("env file exists: {PATH}").format(PATH=env_path))
+                raise CommandError(_('env file exists: {PATH}').format(PATH=env_path))
         else:
             raise CommandError(_("default env file doesn't exist: {PATH}").format(PATH=default_path))
