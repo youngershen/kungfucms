@@ -5,7 +5,8 @@
 # CELL : 13811754531
 # WECHAT : 13811754531
 # https://github.com/youngershen/
-
+from django.http import HttpResponseServerError
+from django.template import TemplateDoesNotExist, loader
 from kungfucms.apps.core.views import Default
 
 
@@ -34,10 +35,20 @@ class ExceptionHandler404(BaseExceptionHandler):
 
 
 class ExceptionHandler500(BaseExceptionHandler):
-    http_status = 404
+    http_status = 500
+
+
+def handler500(request, **kwargs):
+    try:
+        name = 'exception/500.html'
+        template = loader.get_template(name)
+    except TemplateDoesNotExist:
+        return HttpResponseServerError('<h1>Server Error (500)</h1>', content_type='text/html')
+    return HttpResponseServerError(template.render())
 
 
 exception_handler400 = ExceptionHandler400.as_view()
 exception_handler403 = ExceptionHandler403.as_view()
 exception_handler404 = ExceptionHandler404.as_view()
-exception_handler500 = ExceptionHandler500.as_view()
+exception_handler500 = handler500
+
