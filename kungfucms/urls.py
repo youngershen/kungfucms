@@ -34,6 +34,7 @@ handler403 = exception_handler403
 handler404 = exception_handler404
 handler500 = exception_handler500
 
+
 if settings.DEBUG:
     static_dir = get_theme_static_dir()
     urlpatterns += static(settings.STATIC_URL, document_root=static_dir)

@@ -41,19 +41,6 @@ class Manager(UserManager):
 
 
 class AbstractUser(AbstractBaseUser, PermissionsMixin):
-    username_validator = UnicodeUsernameValidator()
-
-    username = models.CharField(
-        _('username'),
-        max_length=128,
-        unique=True,
-        help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
-        validators=[username_validator],
-        error_messages={
-            'unique': _("A user with that username already exists."),
-        },
-    )
-
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
@@ -69,9 +56,13 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
-    objects = UserManager()
+    objects = Manager()
 
     USERNAME_FIELD = 'username'
+    EMAIL_FIELD = 'email'
+
+    def get_username_field(self):
+        return self.USERNAME_FIELD
 
     class Meta:
         verbose_name = _('user')
@@ -81,25 +72,23 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
     def clean(self):
         super().clean()
 
-    def get_full_name(self):
-        full_name = '%s %s' % (self.first_name, self.last_name)
-        return full_name.strip()
-
-    def get_short_name(self):
-        return self.first_name
-
 
 class User(AbstractUser, BaseModel):
     username = models.CharField(max_length=128,
                                 unique=True,
                                 verbose_name=_('Username'))
 
-    USERNAME_FIELD = 'username'
+    email = models.CharField(max_length=128,
+                             blank=True,
+                             null=True,
+                             db_index=True,
+                             verbose_name=_('Email'))
 
-    objects = Manager()
-
-    def get_username_field(self):
-        return self.USERNAME_FIELD
+    cellphone = models.CharField(max_length=128,
+                                 blank=True,
+                                 null=True,
+                                 db_index=True,
+                                 verbose_name=_('Cellphone'))
 
     @classmethod
     def safe_get(cls, **kwargs):
@@ -127,6 +116,7 @@ class Profile(BaseModel):
 
     value = models.CharField(max_length=255,
                              blank=True,
+                             null=True,
                              default='',
                              verbose_name=_('Value'))
 
