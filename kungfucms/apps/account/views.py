@@ -51,7 +51,6 @@ class SignUp(DefaultView):
                 'message': _('sign up succeed please login.')
             }
             return self.redirect(url, message=message)
-
         else:
             url = reverse('account:sign-up')
             message = validator.get_message()

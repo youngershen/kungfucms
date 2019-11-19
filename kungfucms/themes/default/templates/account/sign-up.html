@@ -1,1 +1,46 @@
-fuck
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Kungfucms - Sign Up' %}
+{% endblock %}
+
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center kf-signup">
+        <div class="col-3 kf-signup-col">
+            <span class="kf-signup-title">{% trans '注册' %}</span>
+            {% if message %}
+                <span class="kf-signup-message alert alert-warning d-snone" role="alert">{{ message }}</span>
+            {% endif %}
+                <span class="kf-signup-message alert alert-warning d-snone" role="alert">士大夫士大夫</span>
+
+            <form class="kf-signup-form" action="{% url 'account:sign-up' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">{% trans '用户名' %}</label>
+                    <input name="username" type="text" class="form-control" id="username"
+                           aria-describedby="usernameHelp"
+                           placeholder="{% trans '请输入用户名' %}">
+                </div>
+                <div class="form-group">
+                    <label for="password">{% trans '密码' %}</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="请输入密码">
+                </div>
+                <div class="form-group">
+                    <label for="password">{% trans '确认密码' %}</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="请输入密码">
+                </div>
+                <div class="kf-signup-form-submit">
+                    <button type="submit" class="btn btn-primary kf-signup-form-submit-button">{% trans '提交' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
