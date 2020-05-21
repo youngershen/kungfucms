@@ -6,7 +6,7 @@
 # WECHAT : 13811754531
 # https://github.com/youngershen/
 
-from kungfucms.settings.product import *
+from kungfucms.settings.dev import *
 
 DEBUG = False
 

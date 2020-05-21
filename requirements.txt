@@ -1,1 +1,1 @@
--r requirements/product.txt -i http://mirrors.aliyun.com/pypi/simple/
+-r requirements/prod.txt -i https://mirrors.aliyun.com/pypi/simple/

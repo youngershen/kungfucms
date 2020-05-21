@@ -6,7 +6,7 @@
 # WECHAT : 13811754531
 # https://github.com/youngershen/
 
-from kungfucms.settings.product import *
+from kungfucms.settings.prod import *
 
 SECRET_KEY = env.str('SECRET_KEY', 'o(wqer^rxs=vhk^-az=$4v!d*d$ru0-9d5eoik)6#6b$7xhh4)')
 
