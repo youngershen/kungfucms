@@ -1,4 +1,4 @@
--r develop.txt
+-r dev.txt
 
 pytest
 pytest-django

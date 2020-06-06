@@ -19,4 +19,4 @@ markdown
 django-filter
 django-guardian
 djangorestframework
-# decaptcha
+# django-easy-captcha

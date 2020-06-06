@@ -9,9 +9,8 @@
 import os
 import logging
 
-from kungfucms.logging.utils import get_log_file
+from kungfucms.loggers.utils import get_log_file, get_log_path
 from kungfucms.utils import get_base_path, get_env, get_media_root, get_theme_template_dir, get_theme_static_dir
-from kungfucms.logging.utils import get_log_path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = get_base_path()
@@ -161,7 +160,7 @@ LOGGING = {
         },
         'file': {
             'level': logging.INFO,
-            'class': 'kungfucms.logging.handlers.FileHandler',
+            'class': 'kungfucms.loggers.handlers.FileHandler',
             'formatter': 'verbose',
             'filename': get_log_file(),
         },
@@ -172,7 +171,7 @@ LOGGING = {
         },
         'db': {
             'level': logging.ERROR,
-            'class': 'kungfucms.logging.handlers.DBHandler',
+            'class': 'kungfucms.loggers.handlers.DBHandler',
         }
     },
     'loggers': {

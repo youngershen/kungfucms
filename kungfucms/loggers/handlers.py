@@ -9,7 +9,7 @@
 from datetime import datetime
 from logging import FileHandler as BaseFileHandler, Handler, LogRecord
 from django.utils.timezone import make_aware
-from kungfucms.logging.utils import get_log_file
+from kungfucms.loggers.utils import get_log_file
 
 
 class FileHandler(BaseFileHandler):
