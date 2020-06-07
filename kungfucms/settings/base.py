@@ -106,11 +106,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_DIR = get_theme_static_dir()
+
+STATICFILES_DIRS = [STATIC_DIR, ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -119,10 +122,6 @@ MEDIA_URL = '/upload/'
 MEDIA_ROOT = get_media_root()
 
 LOG_ROOT = get_log_path()
-
-STATIC_DIR = get_theme_static_dir()
-
-STATICFILES_DIRS = [STATIC_DIR, ]
 
 AUTH_USER_MODEL = 'account.User'
 
