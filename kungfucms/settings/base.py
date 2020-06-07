@@ -10,7 +10,12 @@ import os
 import logging
 
 from kungfucms.loggers.utils import get_log_file, get_log_path
-from kungfucms.utils import get_base_path, get_env, get_media_root, get_theme_template_dir, get_theme_static_dir
+from kungfucms.utils import get_base_path, \
+    get_env, \
+    get_media_root, \
+    get_theme_template_dir, \
+    get_theme_static_dir, \
+    get_static_ur
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = get_base_path()

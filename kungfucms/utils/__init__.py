@@ -6,12 +6,18 @@
 # WECHAT : 13811754531
 # https://github.com/youngershen/
 
-from .common import get_static_dirs, get_base_path, get_env, get_media_root, get_theme_template_dir, get_theme_dir, get_theme_static_dir
+from .common import get_static_dirs, \
+    get_base_path, \
+    config_env, \
+    get_media_root, \
+    get_theme_template_dir, \
+    get_theme_dir, \
+    get_theme_static_dir
 
 __all__ = [
     'get_static_dirs',
     'get_base_path',
-    'get_env',
+    'config_env',
     'get_media_root',
     'get_theme_template_dir',
     'get_theme_dir',

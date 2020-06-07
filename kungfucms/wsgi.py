@@ -7,9 +7,16 @@
 # https://github.com/youngershen/
 
 import os
-
+import environ
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kungfu.settings')
+BASE_DIR = os.path.abspath('.')
+ENV_NAME = '.env'
+
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, ENV_NAME))
+DJANGO_SETTINGS_MODULE = env.str('DJANGO_SETTINGS_MODULE', 'kungfucms.settings.prod')
+
+os.environ.setdefault(DJANGO_SETTINGS_MODULE, 'kungfucms.settings.prod')
 
 application = get_wsgi_application()
