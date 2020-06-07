@@ -17,19 +17,17 @@ class UsernameSignUp(Validator):
 
     message = {
         'username': {
-            'required': _('username is required'),
-            'unique': _('username already exists'),
-            'min_length': _('the length of username must greater than 5')
+            'required': _('用户名不能为空'),
+            'unique': _('用户名已存在'),
+            'min_length': _('用户名长度至少为5个字符')
         },
         'password': {
-            'required': _('password is required'),
-            'password': _('the password length must longer '
-                          'than 7 and it sould contains lower , '
-                          'upper latin characters and digits')
+            'required': _('密码不能为空'),
+            'password': _('密码长度至少为 7 个字符 切必须包含大小写字母以及数字')
         },
         'password_confirm': {
-            'required': _('password_confirm is required'),
-            'same': _('passwordc_confirm must same as the password field')
+            'required': _('确认密码不能为空'),
+            'same': _('确认密码与原密码不同')
         }
     }
 
