@@ -100,7 +100,7 @@ class Permission:
         return True, None
 
     @staticmethod
-    def _is_login(request):
+    def is_login(request):
         return request.user.is_authenticated
 
 

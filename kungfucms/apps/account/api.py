@@ -24,4 +24,15 @@ class SignIn(APIView):
         })
 
 
+class ChangePassword(APIView):
+    http_method_names = ['post']
+
+    def post_permission(*args, **kwargs):
+        pass
+
+    def post_context(self, request, *args, **kwargs):
+        pass
+
+
 sign_in = SignIn.as_api()
+change_password = ChangePassword.as_api()
