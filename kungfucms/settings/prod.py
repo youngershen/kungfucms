@@ -40,6 +40,10 @@ CACHES = {
     },
 }
 
+MIDDLEWARE += [
+    'kungfucms.apps.api.middlewares.APIAuthMiddleware'
+]
+
 SITE_NAME = 'Kungfucms'
 
 API_AUTH_SECRET = env.str('API_AUTH_SECRET')

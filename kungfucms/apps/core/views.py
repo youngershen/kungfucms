@@ -15,7 +15,7 @@ from kungfucms.apps.core.mixins import Context, \
     FlashMessage
 
 
-class Default(FlashMessage, Context, Response, TemplateResponseMixin, RedirectResponse, DjangoView):
+class PageView(FlashMessage, Context, Response, TemplateResponseMixin, RedirectResponse, DjangoView):
     http_method_names = ['get', 'post', 'put', 'delete']
     template_name = None
 
@@ -32,8 +32,20 @@ class Default(FlashMessage, Context, Response, TemplateResponseMixin, RedirectRe
         return self.to_json()
 
 
-class API(APIContext, Default):
+class APIView(APIContext, Context, Response, RedirectResponse, DjangoView):
     http_method_names = ['get', 'post', 'put', 'delete']
+
+    def get_context(self, request, *args, **kwargs):
+        return self.to_json()
+
+    def post_context(self, request, *args, **kwargs):
+        return self.to_json()
+
+    def put_context(self, request, *args, **kwargs):
+        return self.to_json()
+
+    def delete_context(self, request, *args, **kwargs):
+        return self.to_json()
 
     def patch_context(self, request, *args, **kwargs):
         return self.to_json()

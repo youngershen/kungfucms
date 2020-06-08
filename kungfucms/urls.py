@@ -21,12 +21,12 @@ from kungfucms.utils import get_theme_static_dir
 
 # view
 urlpatterns = [
-    path('account/', include('kungfucms.apps.account.urls')),
+    path('account/', include('kungfucms.apps.account.view_urls')),
 ]
 
 # api
 urlpatterns += [
-    path('/v1/api/account/', include('kungfucms.apps.account.api_urls')),
+    path('/api/v1/account/', include('kungfucms.apps.account.api_urls')),
 ]
 
 # others

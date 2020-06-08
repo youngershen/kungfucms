@@ -7,12 +7,14 @@
 # https://github.com/youngershen/
 
 from abc import abstractmethod
-from django.http.response import JsonResponse, \
-    DjangoJSONEncoder, \
-    HttpResponsePermanentRedirect, \
+import django_excel as excel
+from django.core.paginator import Paginator
+from django.http.response import HttpResponsePermanentRedirect, \
     HttpResponseRedirect, \
     HttpResponseGone
 from django.urls.base import reverse
+from kungfucms.apps.core.response import JsonResponse
+from kungfucms.apps.core.serializers import JSONEncoder
 
 
 class FlashMessage:
@@ -63,7 +65,7 @@ class RedirectResponse:
 
 class Response:
     json_response = JsonResponse
-    json_encoder = DjangoJSONEncoder
+    json_encoder = JSONEncoder
 
     def to_json(self, *args, **kwargs):
         return self.json_response(*args, **kwargs, encoder=self.json_encoder)
@@ -94,7 +96,7 @@ class Permission:
         return True, None
 
     @staticmethod
-    def delete_permission( *args, **kwargs):
+    def delete_permission(*args, **kwargs):
         return True, None
 
     @staticmethod

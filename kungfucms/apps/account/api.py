@@ -9,7 +9,9 @@
 import logging
 from django.utils.translation import ugettext as _
 from django.urls import reverse
-from kungfucms.apps.core.views import API as APIView
+from kungfucms.apps.core.views import APIView
+
+logger = logging.getLogger(__name__)
 
 
 class SignIn(APIView):

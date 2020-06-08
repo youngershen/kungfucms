@@ -10,7 +10,7 @@ import logging
 from django.utils.translation import ugettext as _
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
-from kungfucms.apps.core.views import Default as DefaultView
+from kungfucms.apps.core.views import PageView
 from kungfucms.apps.account.validators import CheckUsername as CheckUserNameValidator,\
     CheckCellphone as CheckCellphoneValidator, \
     CheckEmail as CheckEmailValidator, \
@@ -21,7 +21,7 @@ from kungfucms.apps.account.models import User
 logger = logging.getLogger(__name__)
 
 
-class SignUp(DefaultView):
+class SignUp(PageView):
     template_name = 'account/sign-up.html'
     http_method_names = ['get', 'post']
 
@@ -62,7 +62,7 @@ class SignUp(DefaultView):
         return user
 
 
-class SingIn(DefaultView):
+class SingIn(PageView):
     template_name = 'account/sign-in.html'
     http_method_names = ['get', 'post']
 
@@ -94,7 +94,7 @@ class SingIn(DefaultView):
         return user
 
 
-class CheckUserToken(DefaultView):
+class CheckUserToken(PageView):
     http_method_names = ['post', ]
     validator = None
 
@@ -121,23 +121,23 @@ class CheckEmail(CheckUserToken):
     validator = CheckEmailValidator
 
 
-class ResetPassword(DefaultView):
+class ResetPassword(PageView):
     pass
 
 
-class ChangePassword(DefaultView):
+class ChangePassword(PageView):
     pass
 
 
-class ActiveUser(DefaultView):
+class ActiveUser(PageView):
     pass
 
 
-class DeleteUser(DefaultView):
+class DeleteUser(PageView):
     pass
 
 
-class BlockUser(DefaultView):
+class BlockUser(PageView):
     pass
 
 
