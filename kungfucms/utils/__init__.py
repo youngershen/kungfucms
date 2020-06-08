@@ -12,7 +12,9 @@ from .common import get_static_dirs, \
     get_media_root, \
     get_theme_template_dir, \
     get_theme_dir, \
-    get_theme_static_dir
+    get_theme_static_dir, \
+    get_static_url, \
+    get_media_url
 
 __all__ = [
     'get_static_dirs',
@@ -21,5 +23,7 @@ __all__ = [
     'get_media_root',
     'get_theme_template_dir',
     'get_theme_dir',
-    'get_theme_static_dir'
+    'get_theme_static_dir',
+    'get_static_url',
+    'get_media_url'
 ]
