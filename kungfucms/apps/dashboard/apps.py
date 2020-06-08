@@ -7,7 +7,9 @@
 # https://github.com/youngershen/
 
 from django.apps import AppConfig
+from django.utils.translation import ugettext as _
 
 
 class DashboardConfig(AppConfig):
     name = 'kungfucms.apps.dashboard'
+    verbose_name = _('后台模块')
