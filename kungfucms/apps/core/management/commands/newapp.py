@@ -18,23 +18,23 @@ from django.core.management.commands import startapp
 class Command(BaseCommand):
     template_path = os.path.join(settings.BASE_DIR, 'kungfucms', 'utils', 'conf', 'app_template')
     default_path = os.path.join(settings.BASE_DIR, 'kungfucms', 'apps')
-    help = _('craete kungfucms style app')
+    help = _('创建APP')
 
     def add_arguments(self, parser):
         parser.add_argument('name',
-                            help=_('name of the app'))
+                            help=_('APP 的名称'))
 
         parser.add_argument('-p',
                             '--path',
                             nargs='?',
                             const=self.default_path,
                             default=self.default_path,
-                            help=_('path of the app'))
+                            help=_('APP 的路径'))
 
         parser.add_argument('-f',
                             '--force',
                             action='store_true',
-                            help=_('force overwrite exists app'))
+                            help=_('覆盖已存在的同名 APP'))
 
     def handle(self, *args, **options):
         name = options['name']
@@ -50,7 +50,7 @@ class Command(BaseCommand):
             self.create_app(name, path)
 
         else:
-            raise CommandError(_('app already exists: {APP_NAME} use -f to force overwrite').format(APP_NAME=name))
+            raise CommandError(_('{APP_NAME} APP 已存在').format(APP_NAME=name))
 
     def create_app(self, name, path):
         management.call_command(startapp.Command(),

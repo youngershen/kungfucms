@@ -198,3 +198,53 @@ class APIContext(Context, APIPermission):
     @abstractmethod
     def trace_context(self, request, *args, **kwargs):
         pass
+
+
+class PaginationMixin:
+    paginator = None
+    page_obj = None
+    page = 1
+    page_size = 10
+    qs = None
+
+    def init_page(self, request, qs):
+        self.page = request.GET.get('page', 1)
+        self.page_size = request.GET.get('size', 10)
+        self.qs = qs
+
+    def get_page(self):
+        return self.get_result()
+
+    def get_page_obj(self):
+        self.paginator = Paginator(self.qs, self.page_size)
+        self.page_obj = self.paginator.get_page(self.page)
+        return self.page_obj
+
+    def get_result(self, export=False, values=None):
+        page_obj = self.get_page_obj()
+        if export:
+            data = page_obj.object_list.values(*values) if values else page_obj.object_list
+        else:
+            obj_list = list(page_obj.object_list.values(*values)) if values else list(page_obj.object_list.values())
+
+            data = {
+                'list': obj_list,
+                'previous_page': page_obj.previous_page_number() if page_obj.has_previous() else 0,
+                'next_page': page_obj.next_page_number() if page_obj.has_next() else 0,
+                'total_pages': page_obj.paginator.num_pages,
+                'total_count': self.paginator.count
+            }
+
+        return data
+
+    def return_full_list(self):
+        full = self.request.GET.get('full')
+        return True if full else False
+
+    def return_single_list(self):
+        single = self.request.GET.get('id')
+        return True if single else False
+
+
+class ExportExcelMixin:
+    pass
