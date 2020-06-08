@@ -15,7 +15,13 @@ logger = logging.getLogger(__name__)
 
 
 class SignIn(APIView):
-    pass
+    http_method_names = ['post']
+
+    def post_context(self, request, *args, **kwargs):
+        return self.to_json({
+            'a': 'a',
+            'b': 'b'
+        })
 
 
-sign_in = SignIn.as_view()
+sign_in = SignIn.as_api()

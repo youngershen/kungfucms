@@ -26,7 +26,7 @@ urlpatterns = [
 
 # api
 urlpatterns += [
-    path('/api/v1/account/', include('kungfucms.apps.account.api_urls')),
+    path('api/v1/account/', include('kungfucms.apps.account.api_urls')),
 ]
 
 # others

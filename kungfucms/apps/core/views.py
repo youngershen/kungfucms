@@ -5,7 +5,8 @@
 # CELL : 13811754531
 # WECHAT : 13811754531
 # https://github.com/youngershen/
-
+from functools import update_wrapper
+from django.utils.decorators import classonlymethod
 from django.views.generic import View as DjangoView
 from django.views.generic.base import TemplateResponseMixin
 from kungfucms.apps.core.mixins import Context, \
@@ -58,3 +59,9 @@ class APIView(APIContext, Context, Response, RedirectResponse, DjangoView):
 
     def trace_context(self, request, *args, **kwargs):
         return self.to_json()
+
+    @classonlymethod
+    def as_api(cls, **initkwargs):
+        view = cls.as_view(**initkwargs)
+        view.csrf_exempt = True
+        return view

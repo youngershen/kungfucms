@@ -14,4 +14,4 @@ urlpatterns = [
     path('sign-in', sign_in, name='api-sign-in'),
 ]
 
-app_name = 'account_api'
+app_name = 'account-api'

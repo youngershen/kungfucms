@@ -17,12 +17,12 @@ class APIAuthMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
+        request.session['API_VERSION'] = 'V1'
+        response.set_cookie('API_VERSION', 'V1')
 
         if request.path.startswith('/api/'):
             secret = request.headers.get('X-API-AUTH-SECRET', '')
             if secret == settings.API_AUTH_SECRET:
-                request.session['API_VERSION'] = 'V1'
-                response.set_cookie('API_VERSION', 'V1')
                 return response
             else:
                 data = {
