@@ -5,4 +5,5 @@
 # CELL : 13811754531
 # WECHAT : 13811754531
 # https://github.com/youngershen/
+from kungfucms.apps.account.signals import *
 default_app_config = 'kungfucms.apps.account.apps.AccountConfig'

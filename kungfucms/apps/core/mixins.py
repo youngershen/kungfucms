@@ -83,20 +83,16 @@ class Response:
 
 class Permission:
 
-    @staticmethod
-    def get_permission(*args, **kwargs):
+    def get_permission(self, request, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def post_permission(*args, **kwargs):
+    def post_permission(self, request, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def put_permission(*args, **kwargs):
+    def put_permission(self, request, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def delete_permission(*args, **kwargs):
+    def delete_permission(self, request, *args, **kwargs):
         return True, None
 
     @staticmethod
@@ -106,20 +102,16 @@ class Permission:
 
 class APIPermission(Permission):
 
-    @staticmethod
-    def patch_permission(*args, **kwargs):
+    def patch_permission(self, request, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def head_permission(*args, **kwargs):
+    def head_permission(self, request, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def options_permission(*args, **kwargs):
+    def options_permission(self, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def trace_permission(*args, **kwargs):
+    def trace_permission(self, *args, **kwargs):
         return True, None
 
 
@@ -200,7 +192,7 @@ class APIContext(Context, APIPermission):
         pass
 
 
-class PaginationMixin:
+class Pagination:
     paginator = None
     page_obj = None
     page = 1
@@ -246,5 +238,13 @@ class PaginationMixin:
         return True if single else False
 
 
-class ExportExcelMixin:
+class ExportExcel:
+    pass
+
+
+class ExportPDF:
+    pass
+
+
+class ExportFile:
     pass

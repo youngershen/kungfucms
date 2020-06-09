@@ -41,7 +41,7 @@ CACHES = {
 }
 
 MIDDLEWARE += [
-    'kungfucms.apps.api.middlewares.APIAuthMiddleware'
+    'kungfucms.apps.api.middlewares.APIAuthMiddleware',
 ]
 
 SITE_NAME = 'Kungfucms'
