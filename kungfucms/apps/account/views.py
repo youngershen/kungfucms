@@ -25,16 +25,6 @@ class SignUp(PageView):
     template_name = 'account/sign-up.html'
     http_method_names = ['get', 'post']
 
-    @staticmethod
-    def permission(request):
-        return True, None
-
-    def get_permission(self, request):
-        return self.permission(request)
-
-    def post_permission(self, request):
-        return self.permission(request)
-
     def get_context(self, request, *args, **kwargs):
         message = self.get_message()
         return self.to_template(context={'message': message})

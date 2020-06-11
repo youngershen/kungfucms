@@ -31,6 +31,7 @@ class SignIn(APIView):
         return self.to_json(data)
 
 
+
 class ChangePassword(APIView):
     http_method_names = ['post']
 
