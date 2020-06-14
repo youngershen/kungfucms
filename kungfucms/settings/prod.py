@@ -12,7 +12,6 @@ DEBUG = False
 
 INSTALLED_APPS += [
     # thirdy party libs
-    'decaptcha',
     'rest_framework',
     'django_filters',
     # local libs

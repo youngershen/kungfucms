@@ -1,4 +1,4 @@
-django>=2.2.3
+django==3.0.6
 django-environ
 environ
 mysqlclient

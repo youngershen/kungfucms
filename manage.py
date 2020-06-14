@@ -17,7 +17,7 @@ ENV_NAME = '.env'
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ENV_NAME))
 
-DJANGO_SETTINGS_MODULE = env.str('DJANGO_SETTINGS_MODULE', 'kungfucms.settings.product')
+DJANGO_SETTINGS_MODULE = env.str('DJANGO_SETTINGS_MODULE', 'kungfucms.settings.prod')
 
 
 if __name__ == '__main__':

@@ -19,12 +19,13 @@ from kungfucms.apps.exception.views import exception_handler400, \
 from kungfucms.utils import get_theme_static_dir
 
 
+# web page
 urlpatterns = [
     path('account/', include('kungfucms.apps.account.urls')),
-    path('captcha/', include('decaptcha.urls')),
     path('admin/', admin.site.urls),
 ]
 
+# http api
 urlpatterns += [
     path('api/account/', include('kungfucms.apps.account.api_urls')),
 ]
