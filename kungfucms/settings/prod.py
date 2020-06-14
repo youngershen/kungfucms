@@ -15,8 +15,8 @@ INSTALLED_APPS += [
     'rest_framework',
     'django_filters',
     # local libs
-    'kungfucms.apps.core',
-    'kungfucms.apps.account',
+    'kungfucms.apps.core.apps.CoreConfig',
+    'kungfucms.apps.account.apps.AccountConfig',
     'kungfucms.apps.exception',
     'kungfucms.apps.dashboard'
 ]
@@ -39,5 +39,12 @@ CACHES = {
     },
 }
 
+MIDDLEWARE += [
+    'kungfucms.apps.api.middlewares.APIAuthMiddleware',
+]
+
 SITE_NAME = 'Kungfucms'
 
+API_AUTH_SECRET = env.str('API_AUTH_SECRET')
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # one week

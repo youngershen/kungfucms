@@ -6,11 +6,12 @@
 # WECHAT : 13811754531
 # https://github.com/youngershen/
 from django.http import HttpResponseServerError
-from django.template import TemplateDoesNotExist, loader
-from kungfucms.apps.core.views import Default
+from django.template import loader
+from django.template.exceptions import TemplateDoesNotExist
+from kungfucms.apps.core.views import PageView
 
 
-class BaseExceptionHandler(Default):
+class BaseExceptionHandler(PageView):
     http_status = None
 
     def get_template_name(self):

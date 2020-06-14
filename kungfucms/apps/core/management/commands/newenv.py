@@ -17,20 +17,20 @@ class Command(BaseCommand):
     default_name = 'dotenv'
     target_name = '.env'
 
-    help = _('for creating the new env file')
+    help = _('创建新的环境变量文件')
 
     def add_arguments(self, parser):
         parser.add_argument('-f',
                             '--force',
                             action='store_true',
-                            help=_('force overwrite exists env file'))
+                            help=_('覆盖已存在的环境变量文件'))
 
         parser.add_argument('-n',
                             '--name',
                             nargs='?',
                             const=self.target_name,
                             default=self.target_name,
-                            help=_('name of env file'))
+                            help=_('环境变量文件名'))
 
     def handle(self, *args, **options):
         default_path = os.path.join(settings.BASE_DIR, self.default_name)
@@ -45,8 +45,8 @@ class Command(BaseCommand):
                     f = open(env_path, 'wt', encoding='utf8')
                     f.write(c)
                 except IOError:
-                    raise CommandError(_('io error when generating env file'))
+                    raise CommandError(_('环境变量文件创建失败'))
             else:
-                raise CommandError(_('env file exists: {PATH}').format(PATH=env_path))
+                raise CommandError(_('环境变量文件已存在: {PATH}').format(PATH=env_path))
         else:
-            raise CommandError(_("default env file doesn't exist: {PATH}").format(PATH=default_path))
+            raise CommandError(_("默认环境变量文件不存在: {PATH}").format(PATH=default_path))

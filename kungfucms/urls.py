@@ -21,14 +21,21 @@ from kungfucms.utils import get_theme_static_dir
 
 # web page
 urlpatterns = [
-    path('account/', include('kungfucms.apps.account.urls')),
+    path('account/', include('kungfucms.apps.account.view_urls')),
     path('admin/', admin.site.urls),
 ]
 
-# http api
+# api
 urlpatterns += [
-    path('api/account/', include('kungfucms.apps.account.api_urls')),
+    path('api/v1/account/', include('kungfucms.apps.account.api_urls')),
 ]
+
+# others
+urlpatterns += [
+    path('admin/', admin.site.urls),
+    path('captcha/', include('decaptcha.urls')),
+]
+
 
 handler400 = exception_handler400
 handler403 = exception_handler403

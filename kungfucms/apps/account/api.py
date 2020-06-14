@@ -9,11 +9,38 @@
 import logging
 from django.utils.translation import ugettext as _
 from django.urls import reverse
-from kungfucms.apps.core.views import API as APIView
+from kungfucms.apps.core.views import APIView
+from kungfucms.apps.account.services import SignUp as SignUpService
+
+logger = logging.getLogger(__name__)
 
 
 class SignIn(APIView):
-    pass
+    http_method_names = ['post']
+    service_class = SignUpService
+
+    def post_permission(self, request, *args, **kwargs):
+        status = self.service.post_permission(request)
+        if status:
+            return True, None
+        else:
+            return False, self.to_json({'msg': 'fuck'})
+
+    def post_context(self, request, *args, **kwargs):
+        data = self.service.post_logic(request)
+        return self.to_json(data)
 
 
-sign_in = SignIn.as_view()
+
+class ChangePassword(APIView):
+    http_method_names = ['post']
+
+    def post_permission(*args, **kwargs):
+        pass
+
+    def post_context(self, request, *args, **kwargs):
+        pass
+
+
+sign_in = SignIn.as_api()
+change_password = ChangePassword.as_api()

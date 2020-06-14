@@ -17,12 +17,21 @@ def get_base_path():
     return str(base_dir)
 
 
-def get_env(file_name='.env'):
-    env = environ.Env()
+def get_proper_paths(*p):
+    base_dir = get_base_path()
+    proper_paths = map(lambda d: d if d.startswith('/') else os.path.join(base_dir, d), p)
+    return proper_paths
+
+
+def config_env(file_name='.env'):
+    e = environ.Env()
     abs_path = get_base_path()
     env_path = os.path.join(abs_path, file_name)
-    env.read_env(env_path)
-    return env
+    e.read_env(env_path)
+    return e
+
+
+env = config_env()
 
 
 def get_static_dirs():
@@ -34,13 +43,11 @@ def get_static_dirs():
 
 
 def get_media_root():
-    env = get_env()
-    path = env.str('MEDIA_ROOT')
+    path = env.str('MEDIA_ROOT', '/upload')
     return path if path.startswith('/') else os.path.join(get_base_path(), path)
 
 
 def get_theme_dir():
-    env = get_env()
     theme_name = env.str('THEME', )
 
     try:
@@ -62,3 +69,19 @@ def get_theme_template_dir():
 def get_theme_static_dir():
     theme_path = get_theme_dir()
     return os.path.join(theme_path, 'static')
+
+
+def get_static_url():
+    url = env.str('STATIC_URL', '/static')
+    return url
+
+
+def get_media_url():
+    url = env.str('MEDIA_URL', '/media')
+    return url
+
+
+def get_static_root():
+    path = env.str('STATIC_ROOT', 'static')
+    return path if path.startswith('/') else os.path.join(get_base_path(), path)
+

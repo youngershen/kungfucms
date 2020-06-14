@@ -7,12 +7,14 @@
 # https://github.com/youngershen/
 
 from abc import abstractmethod
-from django.http.response import JsonResponse, \
-    DjangoJSONEncoder, \
-    HttpResponsePermanentRedirect, \
+import django_excel as excel
+from django.core.paginator import Paginator
+from django.http.response import HttpResponsePermanentRedirect, \
     HttpResponseRedirect, \
     HttpResponseGone
 from django.urls.base import reverse
+from kungfucms.apps.core.response import JsonResponse
+from kungfucms.apps.core.serializers import JSONEncoder
 
 
 class FlashMessage:
@@ -63,7 +65,7 @@ class RedirectResponse:
 
 class Response:
     json_response = JsonResponse
-    json_encoder = DjangoJSONEncoder
+    json_encoder = JSONEncoder
 
     def to_json(self, *args, **kwargs):
         return self.json_response(*args, **kwargs, encoder=self.json_encoder)
@@ -81,43 +83,35 @@ class Response:
 
 class Permission:
 
-    @staticmethod
-    def get_permission(*args, **kwargs):
+    def get_permission(self, request, *args, **kwargs):
+        return True, None
+
+    def post_permission(self, request, *args, **kwargs):
+        return True, None
+
+    def put_permission(self, request, *args, **kwargs):
+        return True, None
+
+    def delete_permission(self, request, *args, **kwargs):
         return True, None
 
     @staticmethod
-    def post_permission(*args, **kwargs):
-        return True, None
-
-    @staticmethod
-    def put_permission(*args, **kwargs):
-        return True, None
-
-    @staticmethod
-    def delete_permission( *args, **kwargs):
-        return True, None
-
-    @staticmethod
-    def _is_login(request):
+    def is_login(request):
         return request.user.is_authenticated
 
 
 class APIPermission(Permission):
 
-    @staticmethod
-    def patch_permission(*args, **kwargs):
+    def patch_permission(self, request, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def head_permission(*args, **kwargs):
+    def head_permission(self, request, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def options_permission(*args, **kwargs):
+    def options_permission(self, *args, **kwargs):
         return True, None
 
-    @staticmethod
-    def trace_permission(*args, **kwargs):
+    def trace_permission(self, *args, **kwargs):
         return True, None
 
 
@@ -196,3 +190,61 @@ class APIContext(Context, APIPermission):
     @abstractmethod
     def trace_context(self, request, *args, **kwargs):
         pass
+
+
+class Pagination:
+    paginator = None
+    page_obj = None
+    page = 1
+    page_size = 10
+    qs = None
+
+    def init_page(self, request, qs):
+        self.page = request.GET.get('page', 1)
+        self.page_size = request.GET.get('size', 10)
+        self.qs = qs
+
+    def get_page(self):
+        return self.get_result()
+
+    def get_page_obj(self):
+        self.paginator = Paginator(self.qs, self.page_size)
+        self.page_obj = self.paginator.get_page(self.page)
+        return self.page_obj
+
+    def get_result(self, export=False, values=None):
+        page_obj = self.get_page_obj()
+        if export:
+            data = page_obj.object_list.values(*values) if values else page_obj.object_list
+        else:
+            obj_list = list(page_obj.object_list.values(*values)) if values else list(page_obj.object_list.values())
+
+            data = {
+                'list': obj_list,
+                'previous_page': page_obj.previous_page_number() if page_obj.has_previous() else 0,
+                'next_page': page_obj.next_page_number() if page_obj.has_next() else 0,
+                'total_pages': page_obj.paginator.num_pages,
+                'total_count': self.paginator.count
+            }
+
+        return data
+
+    def return_full_list(self):
+        full = self.request.GET.get('full')
+        return True if full else False
+
+    def return_single_list(self):
+        single = self.request.GET.get('id')
+        return True if single else False
+
+
+class ExportExcel:
+    pass
+
+
+class ExportPDF:
+    pass
+
+
+class ExportFile:
+    pass

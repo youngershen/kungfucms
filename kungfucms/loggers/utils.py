@@ -8,11 +8,11 @@
 
 import os
 from datetime import datetime
-from kungfucms.utils.common import get_env, get_base_path
+from kungfucms.utils.common import config_env, get_base_path
 
 
 def get_log_path():
-    env = get_env()
+    env = config_env()
     path = env.str('LOG_DIR')
     return path if path.startswith('/') else os.path.join(get_base_path(), path)
 

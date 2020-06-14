@@ -7,6 +7,7 @@
 # https://github.com/youngershen/
 
 from django.apps import AppConfig
+from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_migrate
 
 
@@ -19,10 +20,10 @@ def init_superuser(sender, **kwargs):
     user = User.safe_get(username=name)
 
     if user:
-        print('Default super user already exists')
+        print(_('默认的超级用户已经存在'))
     else:
         user = User.objects.create_superuser(name, pwd)
-        print('Default super user created')
+        print(_('默认超级用户创建成功'))
 
     from django.contrib.auth.models import Group
     group = Group.objects.get(name='superuser')
@@ -42,6 +43,7 @@ def init_permissions():
 
 class AccountConfig(AppConfig):
     name = 'kungfucms.apps.account'
+    verbose_name = _('账户模块')
 
     def ready(self):
         self.init_signals()

@@ -7,7 +7,9 @@
 # https://github.com/youngershen/
 
 from django.apps import AppConfig
+from django.utils.translation import ugettext_lazy as _
 
 
 class ExceptionConfig(AppConfig):
     name = 'kungfucms.apps.exception'
+    verbose_name = _('异常模块')

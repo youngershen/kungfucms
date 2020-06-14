@@ -9,16 +9,21 @@
 import os
 import logging
 
-from kungfucms.logging.utils import get_log_file
-from kungfucms.utils import get_base_path, get_env, get_media_root, get_theme_template_dir, get_theme_static_dir
-from kungfucms.logging.utils import get_log_path
+from kungfucms.loggers.utils import get_log_file, get_log_path
+from kungfucms.utils import get_base_path, \
+    config_env, \
+    get_media_root, \
+    get_theme_template_dir, \
+    get_theme_static_dir, \
+    get_static_url, \
+    get_media_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = get_base_path()
 
 ENV_NAME = '.env'
 
-env = get_env(file_name=ENV_NAME)
+env = config_env(file_name=ENV_NAME)
 
 
 # Quick-start development settings - unsuitable for production
@@ -66,7 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'kungfucms.apps.account.context_processors.settings'
+                'kungfucms.apps.core.context_processors.settings'
             ],
         },
     },
@@ -107,23 +112,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-MEDIA_URL = '/upload/'
-
-MEDIA_ROOT = get_media_root()
-
-LOG_ROOT = get_log_path()
+STATIC_URL = get_static_url()
 
 STATIC_DIR = get_theme_static_dir()
 
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = get_media_url()
+
+MEDIA_ROOT = get_media_root()
+
+LOG_ROOT = get_log_path()
 
 AUTH_USER_MODEL = 'account.User'
 
@@ -161,7 +165,7 @@ LOGGING = {
         },
         'file': {
             'level': logging.INFO,
-            'class': 'kungfucms.logging.handlers.FileHandler',
+            'class': 'kungfucms.loggers.handlers.FileHandler',
             'formatter': 'verbose',
             'filename': get_log_file(),
         },
@@ -172,7 +176,7 @@ LOGGING = {
         },
         'db': {
             'level': logging.ERROR,
-            'class': 'kungfucms.logging.handlers.DBHandler',
+            'class': 'kungfucms.loggers.handlers.DBHandler',
         }
     },
     'loggers': {
