@@ -1,0 +1,11 @@
+# PROJECT : kungfucms
+# TIME : 2019/11/18 17:30
+# AUTHOR : Younger Shen
+# EMAIL : shenyangang@163.com
+# CELL : 13811754531
+# WECHAT : 13811754531
+# https://github.com/youngershen/
+
+import logging
+
+logger = logging.getLogger(__name__)

@@ -1,0 +1,16 @@
+[
+  {
+    "model": "auth.Group",
+    "pk": 1,
+    "fields": {
+      "name": "superuser"
+    }
+  },
+  {
+    "model": "auth.Group",
+    "pk": 2,
+    "fields": {
+      "name": "user"
+    }
+  }
+]

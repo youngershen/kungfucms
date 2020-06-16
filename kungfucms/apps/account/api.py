@@ -8,7 +8,7 @@
 
 import logging
 from kungfucms.apps.core.views import APIView
-from kungfucms.apps.account.services import SignUp as SignUpService
+from kungfucms.apps.account.services import SignUpAPI as SignUpService
 
 logger = logging.getLogger(__name__)
 
