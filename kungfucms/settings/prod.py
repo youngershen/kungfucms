@@ -11,14 +11,13 @@ from kungfucms.settings.base import *
 DEBUG = False
 
 INSTALLED_APPS += [
-    # thirdy party libs
     'rest_framework',
     'django_filters',
-    # local libs
+    'decaptcha',
     'kungfucms.apps.core.apps.CoreConfig',
     'kungfucms.apps.account.apps.AccountConfig',
-    'kungfucms.apps.exception',
-    'kungfucms.apps.dashboard'
+    'kungfucms.apps.exception.apps.ExceptionConfig',
+    'kungfucms.apps.dashboard.apps.DashboardConfig'
 ]
 
 DOMAIN_NAME = env.list('DOMAIN_NAME', default='localhost')

@@ -32,7 +32,6 @@ urlpatterns += [
 
 # others
 urlpatterns += [
-    path('admin/', admin.site.urls),
     path('captcha/', include('decaptcha.urls')),
 ]
 

@@ -7,8 +7,6 @@
 # https://github.com/youngershen/
 
 import logging
-from django.utils.translation import ugettext as _
-from django.urls import reverse
 from kungfucms.apps.core.views import APIView
 from kungfucms.apps.account.services import SignUp as SignUpService
 
@@ -29,7 +27,6 @@ class SignIn(APIView):
     def post_context(self, request, *args, **kwargs):
         data = self.service.post_logic(request)
         return self.to_json(data)
-
 
 
 class ChangePassword(APIView):
