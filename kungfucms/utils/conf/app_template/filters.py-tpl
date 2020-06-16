@@ -4,3 +4,21 @@
 # PHONE : 13811754531
 # WECHAT : 13811754531
 # https://github.com/youngershen
+
+import django_filters
+from kungfucms.apps.account.models import User
+
+
+class UserFilter(django_filters.FilterSet):
+    class Meta:
+        model = User
+        fields = {
+            'username': ['exact'],
+            'nickname': ['icontains'],
+            'id': ['exact'],
+            'last_login': ['gt', 'gte', 'lt', 'lte'],
+            'created_at': ['gt', 'gte', 'lt', 'lte'],
+            'updated_at': ['gt', 'gte', 'lt', 'lte'],
+            'deleted_at': ['gt', 'gte', 'lt', 'lte'],
+            'email': ['icontains'],
+        }
