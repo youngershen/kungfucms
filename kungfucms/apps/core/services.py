@@ -11,50 +11,49 @@ from abc import ABC
 class BaseService(ABC):
 
     def get_permission(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def get_logic(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def post_permission(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def post_logic(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def put_permission(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def put_logic(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def delete_permission(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def delete_logic(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def patch_permission(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def patch_logic(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def head_permission(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def head_logic(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def options_permission(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def options_logic(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def trace_permission(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def trace_logic(self, request, *args, **kwargs):
-        raise NotImplementedError()
-
+        pass

@@ -8,7 +8,14 @@
 
 from kungfucms.apps.core.services import BaseService
 
+
 class SignUpView(BaseService):
+    def get_permission(self, request, *args, **kwargs):
+        return True
+
+    def get_logic(self, request, *args, **kwargs):
+        pass
+
     def post_permission(self, request, *args, **kwargs):
         return True
 
@@ -16,6 +23,9 @@ class SignUpView(BaseService):
         return {
             'msg': 'hello world'
         }
+
+    def trace_logic(self, request, *args, **kwargs):
+        pass
 
 
 class SignUpAPI(BaseService):

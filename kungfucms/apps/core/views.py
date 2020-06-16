@@ -26,16 +26,16 @@ class PageView(FlashMessage, Context, Response, TemplateResponseMixin, RedirectR
         self.service = self.service_class()
 
     def get_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def post_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def put_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def delete_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
 
 class APIView(APIContext, Context, Response, RedirectResponse, DjangoView):
@@ -48,28 +48,28 @@ class APIView(APIContext, Context, Response, RedirectResponse, DjangoView):
         self.service = self.service_class()
 
     def get_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def post_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def put_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def delete_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def patch_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def head_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def options_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     def trace_context(self, request, *args, **kwargs):
-        raise NotImplementedError()
+        pass
 
     @classonlymethod
     def as_api(cls, **initkwargs):
