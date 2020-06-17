@@ -30,3 +30,15 @@ class SignUp(Validator):
             'same': _('确认密码与原密码不同')
         }
     }
+
+
+class CheckUsername(Validator):
+    username = 'required|unique:AUTH_USER_MODEL,username|min_length:5'
+
+    message = {
+        'username': {
+            'required': _('用户名不能为空'),
+            'unique': _('用户名已存在'),
+            'min_length': _('用户名长度至少为5个字符')
+        }
+    }

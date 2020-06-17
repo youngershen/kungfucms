@@ -2,12 +2,17 @@
 {% load static %}
 {% load i18n %}
 
+{% block meta %}
+    <meta name="check-username-url" content="{% url 'account:check-username' %}">
+{% endblock %}
+
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
+    <script src="{% static 'js/sign-up.js' %}"></script>
 {% endblock %}
 
 {% block title %}
-    {% trans 'Kungfucms - 登录' %}
+    {% trans 'Kungfucms - 注册' %}
 {% endblock %}
 
 
@@ -22,35 +27,52 @@
 
         {% if message %}
         <div class="kf-signup-message">
-            <span class="kf-signup-message-text alerts alert-wsarning d-snone" role="alert">{{ message }}</span>
+            <span class="kf-signup-message-text alerts alert-wsarning" role="alert">{{ message }}</span>
         </div>
         {% endif %}
+
+        <div class="kf-signup-message d-none" id="kf-signup-message-network-error">
+            <span class="kf-signup-message-text alerts alert-wsarning" role="alert">{% trans '网络错误 请重试' %}</span>
+        </div>
+
         <div class="row justify-content-center kf-signup-row">
             <div class="col-md-3 col-lg-3 col-sm-4 kf-signup-col">
-                <h3 class="kf-signup-title">{% trans '注册' %}</h3>
 
                 <form class="kf-signup-form" action="{% url 'account:sign-up' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="username">{% trans '用户名' %}</label>
-                        <input name="username" type="text" class="form-control" id="username"
-                               aria-describedby="usernameHelp"
-                               placeholder="{% trans '请输入用户名' %}">
-                        <div class="alert alert-danger kf-singun-form-tip" role="alert">
-                            {% trans '用户名已存在' %}
-                        </div>
+                        <input  name="username"
+                                status="false"
+                                type="text"
+                                class="form-control"
+                                id="sign-up-form-input-username"
+                                aria-describedby="username help"
+                                placeholder="{% trans '请输入用户名' %}">
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signin-form-username-required-tip"></div>
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signin-form-username-unique-tip"></div>
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signin-form-username-min-length-tip"></div>
                     </div>
                     <div class="form-group">
                         <label for="password">{% trans '密码' %}</label>
                         <input name="password" type="password" class="form-control" id="password" placeholder="请输入密码">
+                        <div class="alert alert-danger kf-signup-form-tip" role="alert">
+                            {% trans '密码强度不够' %}
+                        </div>
+                                                <div class="alert alert-danger kf-signup-form-tip" role="alert">
+                            {% trans '密码强度不够' %}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="password">{% trans '确认密码' %}</label>
                         <input name="password" type="password" class="form-control" id="password" placeholder="请输入密码">
+                        <div class="alert alert-danger kf-signup-form-tip" role="alert">
+                            {% trans '确认密码必须与密码相同' %}
+                        </div>
                     </div>
                     <div class="kf-signup-form-submit">
                         <button type="submit"
-                                class="btn btn-primary kf-signup-form-submit-button">{% trans '提交' %}</button>
+                                class="btn btn-primary kf-signup-form-submit-button">{% trans '确定' %}</button>
 
                         <a href="">{% trans '已有账号？点击登录' %}</a>
                     </div>

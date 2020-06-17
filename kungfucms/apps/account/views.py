@@ -85,6 +85,15 @@ class CheckUserToken(PageView):
         return self.to_json(retval)
 
 
+class CheckUserName(PageView):
+    http_method_names = ['post']
+    service_class = SignUpService
+
+    def post_context(self, request, *args, **kwargs):
+        _, data = self.service.check_username(request)
+        return self.to_json(data)
+
+
 class ResetPassword(PageView):
     pass
 
@@ -108,6 +117,7 @@ class BlockUser(PageView):
 sign_up = SignUp.as_view()
 sign_in = SingIn.as_view()
 reset_password = ResetPassword.as_view()
+check_username = CheckUserName.as_view()
 change_password = ChangePassword.as_view()
 active_user = ActiveUser.as_view()
 delete_user = DeleteUser.as_view()

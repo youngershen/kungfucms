@@ -6,12 +6,12 @@
 # WECHAT : 13811754531
 # https://github.com/youngershen
 from kungfucms.apps.core.services import BaseService
-from kungfucms.apps.account.validators import SignUp as SignUpValidator
+from kungfucms.apps.account.validators import SignUp as SignUpValidator, CheckUsername as CheckUsernameValidator
 from kungfucms.apps.account.models import User
 
 
 class SignUpView(BaseService):
-    def post_logic(self, request, *args, **kwargs):
+    def sign_up(self, request, *args, **kwargs):
         validator = SignUpValidator(request.POST)
         if validator.validate():
             username = validator.get('username')
@@ -29,6 +29,19 @@ class SignUpView(BaseService):
     def create_user(username, password):
         user = User.objects.create_user(username=username, password=password)
         return user
+
+    @staticmethod
+    def check_username(request, *args, **kwargs):
+        validator = CheckUsernameValidator(request.POST)
+        if validator.validate():
+            return True, {
+                'status': True,
+            }
+        else:
+            return False, {
+                'status': False,
+                'message': validator.get_message()
+            }
 
 
 class SignUpAPI(BaseService):
