@@ -56,16 +56,18 @@
                     <div class="form-group">
                         <label for="password">{% trans '密码' %}</label>
                         <input name="password" type="password" class="form-control" id="password" placeholder="请输入密码">
-                        <div class="alert alert-danger kf-signup-form-tip" role="alert">
-                            {% trans '密码强度不够' %}
-                        </div>
-                                                <div class="alert alert-danger kf-signup-form-tip" role="alert">
-                            {% trans '密码强度不够' %}
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert">
+                            {% trans '密码长度至少为 7 个字符 且必须包含大小写字母以及数字' %}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password">{% trans '确认密码' %}</label>
-                        <input name="password" type="password" class="form-control" id="password" placeholder="请输入密码">
+                        <input name="password"
+                               type="password"
+                               class="form-control"
+                               id="sign-up-form-input-password"
+                               status="false"
+                               placeholder="请输入密码">
                         <div class="alert alert-danger kf-signup-form-tip" role="alert">
                             {% trans '确认密码必须与密码相同' %}
                         </div>

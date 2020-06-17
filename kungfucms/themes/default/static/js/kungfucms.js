@@ -46,4 +46,6 @@
     kungfucms.ajax = ajax;
     kungfucms.get_meta_content = get_meta_content;
 
+    window.K = kungfucms;
+
 })(window, $);

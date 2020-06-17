@@ -23,7 +23,7 @@ class SignUp(Validator):
         },
         'password': {
             'required': _('密码不能为空'),
-            'password': _('密码长度至少为 7 个字符 切必须包含大小写字母以及数字')
+            'password': _('密码长度至少为 7 个字符 且必须包含大小写字母以及数字')
         },
         'password_confirm': {
             'required': _('确认密码不能为空'),

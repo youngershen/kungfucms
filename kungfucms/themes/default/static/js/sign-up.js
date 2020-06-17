@@ -75,6 +75,16 @@
                 }
             });
         });
+        $('#sign-up-form-input-password').change(function(){
+            let password = $('#sign-up-form-input-password').val();
+            $('#kf-signup-message-network-error').addClass('d-none');
+            let pwreg = /([0-9]+[a-z]+[A-Z]+){7}/;
+            if(pwreg.test(password))
+            {
+
+            }
+
+        });
     });
 
 })(window, $);
