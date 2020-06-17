@@ -11,12 +11,7 @@ from django.utils.translation import ugettext as _
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from kungfucms.apps.core.views import PageView
-from kungfucms.apps.account.validators import CheckUsername as CheckUserNameValidator,\
-    CheckCellphone as CheckCellphoneValidator, \
-    CheckEmail as CheckEmailValidator, \
-    UsernameSignUp
-from kungfucms.apps.account.models import User
-
+from kungfucms.apps.account.services import SignUpView as SignUpService
 
 logger = logging.getLogger(__name__)
 
@@ -24,32 +19,23 @@ logger = logging.getLogger(__name__)
 class SignUp(PageView):
     template_name = 'account/sign-up.html'
     http_method_names = ['get', 'post']
+    service_class = SignUpService
 
     def get_context(self, request, *args, **kwargs):
         message = self.get_message()
         return self.to_template(context={'message': message})
 
     def post_context(self, request, *args, **kwargs):
-        validator = UsernameSignUp(request.POST)
-
-        if validator.validate():
-            username = validator.get('username')
-            password = validator.get('password')
-            self.create_user(username, password)
+        ret, data = self.service.post_logic(request, *args, **kwargs)
+        if ret:
             url = reverse('account:sign-in')
             message = {
-                'message': _('sign up succeed please login.')
+                'message': _('注册成功请登录')
             }
             return self.redirect(url, message=message)
         else:
             url = reverse('account:sign-up')
-            message = validator.get_message()
-            return self.redirect(url, message=message)
-
-    @staticmethod
-    def create_user(username, password):
-        user = User.objects.create_user(username=username, password=password)
-        return user
+            return self.redirect(url, message=_('注册失败 请重试'))
 
 
 class SingIn(PageView):
@@ -99,18 +85,6 @@ class CheckUserToken(PageView):
         return self.to_json(retval)
 
 
-class CheckUsername(CheckUserToken):
-    validator = CheckUserNameValidator
-
-
-class CheckCellphone(CheckUserToken):
-    validator = CheckCellphoneValidator
-
-
-class CheckEmail(CheckUserToken):
-    validator = CheckEmailValidator
-
-
 class ResetPassword(PageView):
     pass
 
@@ -133,9 +107,6 @@ class BlockUser(PageView):
 
 sign_up = SignUp.as_view()
 sign_in = SingIn.as_view()
-check_username = CheckUsername.as_view()
-check_cellphone = CheckCellphone.as_view()
-check_email = CheckEmail.as_view()
 reset_password = ResetPassword.as_view()
 change_password = ChangePassword.as_view()
 active_user = ActiveUser.as_view()
