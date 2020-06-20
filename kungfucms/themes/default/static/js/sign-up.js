@@ -33,41 +33,40 @@
                         if(r.message.username['min_length'])
                         {
                             console.log(r.message.username['min_length']);
-                            $('#kf-signin-form-username-min-length-tip').html(r.message.username['min_length']).removeClass('d-none') ;
+                            $('#kf-signup-form-username-min-length-tip').html(r.message.username['min_length']).removeClass('d-none');
                         }
                         else
                         {
-                            $('#kf-signin-form-username-min-length-tip').addClass('d-none') ;
+                            $('#kf-signup-form-username-min-length-tip').addClass('d-none') ;
                         }
 
                         if(r.message.username['required'])
                         {
                             console.log(r.message.username['required']);
-                            $('#kf-signin-form-username-required-tip').html(r.message.username['required']).removeClass('d-none') ;
+                            $('#kf-signup-form-username-required-tip').html(r.message.username['required']).removeClass('d-none') ;
                         }
                         else
                         {
-                            $('#kf-signin-form-username-required-tip').addClass('d-none') ;
+                            $('#kf-signup-form-username-required-tip').addClass('d-none') ;
                         }
 
                         if(r.message.username['unique'])
                         {
                             console.log(r.message.username['unique']);
-                            $('#kf-signin-form-username-unique-tip').html(r.message.username['unique']).removeClass('d-none') ;
+                            $('#kf-signup-form-username-unique-tip').html(r.message.username['unique']).removeClass('d-none') ;
                         }
                         else
                         {
-                            $('#kf-signin-form-username-unique-tip').addClass('d-none') ;
+                            $('#kf-signup-form-username-unique-tip').addClass('d-none') ;
                         }
 
                     }
                     else {
                         $('#sign-up-form-input-username').attr('status', 'true');
-                        $('#kf-signin-form-username-min-length-tip').addClass('d-none');
-                        $('#kf-signin-form-username-required-tip').addClass('d-none') ;
-                        $('#kf-signin-form-username-unique-tip').addClass('d-none') ;
+                        $('#kf-signup-form-username-min-length-tip').addClass('d-none');
+                        $('#kf-signup-form-username-required-tip').addClass('d-none') ;
+                        $('#kf-signup-form-username-unique-tip').addClass('d-none') ;
                     }
-
                 },
                 'error': function(r){
                     console.log(r);
@@ -75,16 +74,52 @@
                 }
             });
         });
+
+
         $('#sign-up-form-input-password').change(function(){
+
             let password = $('#sign-up-form-input-password').val();
             $('#kf-signup-message-network-error').addClass('d-none');
-            let pwreg = /([0-9]+[a-z]+[A-Z]+){7}/;
-            if(pwreg.test(password))
+            $('#kf-signup-form-password-tip').addClass('d-none');
+
+            let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\s\S]{8,}$/;
+            if(regex.test(password))
             {
+                $('#kf-signup-form-password-tip').addClass('d-none');
+                $('#sign-up-form-input-password').attr('status', 'true');
 
+            }else
+            {
+                $('#kf-signup-form-password-tip').removeClass('d-none');
             }
+        });
 
+
+        $('#sign-up-form-input-password-confirm').change(function(){
+            $('#sign-up-form-input-password-confirm-tip').addClass('d-none');
+
+            let password_confirm = $('#sign-up-form-input-password-confirm').val();
+            let password = $('#sign-up-form-input-password').val();
+
+            if(password === password_confirm)
+            {
+                $('#sign-up-form-input-password-confirm-tip').addClass('d-none');
+                $('#sign-up-form-input-password-confirm').attr('status', 'true');
+            }
+            else
+            {
+                $('#sign-up-form-input-password-confirm-tip').removeClass('d-none');
+            }
         });
     });
 
+
+    signup.submit = function()
+    {
+        let username_status = $('#sign-up-form-input-username').attr('status');
+        let password_status = $('#sign-up-form-input-password').attr('status');
+        let password_confirm_status = $('#sign-up-form-input-password-confirm').attr('status');
+
+        return username_status === 'true' && password_status === 'true' && password_confirm_status === 'true';
+    }
 })(window, $);

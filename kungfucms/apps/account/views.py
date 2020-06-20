@@ -26,7 +26,7 @@ class SignUp(PageView):
         return self.to_template(context={'message': message})
 
     def post_context(self, request, *args, **kwargs):
-        ret, data = self.service.post_logic(request, *args, **kwargs)
+        ret, data = self.service.sign_up(request, *args, **kwargs)
         if ret:
             url = reverse('account:sign-in')
             message = {

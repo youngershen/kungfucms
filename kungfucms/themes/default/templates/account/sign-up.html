@@ -38,7 +38,7 @@
         <div class="row justify-content-center kf-signup-row">
             <div class="col-md-3 col-lg-3 col-sm-4 kf-signup-col">
 
-                <form class="kf-signup-form" action="{% url 'account:sign-up' %}" method="post">
+                <form class="kf-signup-form" action="{% url 'account:sign-up' %}" method="post" onsubmit="return K.signup.submit();">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="username">{% trans '用户名' %}</label>
@@ -49,26 +49,31 @@
                                 id="sign-up-form-input-username"
                                 aria-describedby="username help"
                                 placeholder="{% trans '请输入用户名' %}">
-                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signin-form-username-required-tip"></div>
-                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signin-form-username-unique-tip"></div>
-                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signin-form-username-min-length-tip"></div>
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signup-form-username-required-tip"></div>
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signup-form-username-unique-tip"></div>
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signup-form-username-min-length-tip"></div>
                     </div>
                     <div class="form-group">
                         <label for="password">{% trans '密码' %}</label>
-                        <input name="password" type="password" class="form-control" id="password" placeholder="请输入密码">
-                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert">
+                        <input name="password"
+                               type="password"
+                               class="form-control"
+                               status="false"
+                               id="sign-up-form-input-password"
+                               placeholder="请输入密码">
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signup-form-password-tip">
                             {% trans '密码长度至少为 7 个字符 且必须包含大小写字母以及数字' %}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password">{% trans '确认密码' %}</label>
-                        <input name="password"
+                        <input name="password-confirm"
                                type="password"
                                class="form-control"
-                               id="sign-up-form-input-password"
+                               id="sign-up-form-input-password-confirm"
                                status="false"
                                placeholder="请输入密码">
-                        <div class="alert alert-danger kf-signup-form-tip" role="alert">
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="sign-up-form-input-password-confirm-tip">
                             {% trans '确认密码必须与密码相同' %}
                         </div>
                     </div>
