@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from kungfucms.apps.core.views import PageView
-from kungfucms.apps.account.services import SignUpView as SignUpService
+from kungfucms.apps.account.services import SignUpView as SignUpService, SignInView as SignInService
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +43,7 @@ class SignUp(PageView):
 class SingIn(PageView):
     template_name = 'account/sign-in.html'
     http_method_names = ['get', 'post']
+    service_class = SignInService
 
     def get_permission(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -55,20 +56,18 @@ class SingIn(PageView):
         return self.to_message()
 
     def post_context(self, request, *args, **kwargs):
-        message = None
-        if self.login_user(request):
-            url = '/'
+
+        if self.service.sign_in(request):
+            url = self.get_redirect_url('')
+            message = {'info': _('登陆成功')}
         else:
-            message = {'info': '用户名或密码错误'}
+            message = {'info': _('用户名或密码错误')}
             url = reverse('account:sign-in')
+
         return self.redirect(url, message=message)
 
-    @staticmethod
-    def login_user(request):
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
-        user = authenticate(request, username=username, password=password)
-        return user
+    def get_redirect_url(self, redirect_url, *args, **kwargs):
+        return '/'
 
 
 class CheckUserToken(PageView):
