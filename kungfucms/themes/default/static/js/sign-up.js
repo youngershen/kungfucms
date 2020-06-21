@@ -111,6 +111,23 @@
                 $('#sign-up-form-input-password-confirm-tip').removeClass('d-none');
             }
         });
+
+        $('#sign-up-form-input-password-confirm-show-password').mousedown(function(){
+            $('#sign-up-form-input-password-confirm').attr('type', 'text');
+
+        });
+        $('#sign-up-form-input-password-confirm-show-password').mouseup(function(){
+            $('#sign-up-form-input-password-confirm').attr('type', 'password');
+        });
+
+
+        $('#sign-up-form-input-password-show-password').mousedown(function () {
+            $('#sign-up-form-input-password').attr('type', 'text')
+        });
+
+        $('#sign-up-form-input-password-show-password').mouseup(function () {
+            $('#sign-up-form-input-password').attr('type', 'password')
+        });
     });
 
 
