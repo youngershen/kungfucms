@@ -22,20 +22,22 @@ class SignUp(PageView):
     service_class = SignUpService
 
     def get_context(self, request, *args, **kwargs):
-        message = self.get_message()
-        return self.to_template(context={'message': message})
+        return self.to_message()
 
     def post_context(self, request, *args, **kwargs):
         ret, data = self.service.sign_up(request, *args, **kwargs)
         if ret:
             url = reverse('account:sign-in')
             message = {
-                'message': _('注册成功请登录')
+                'info': _('注册成功请登录')
             }
             return self.redirect(url, message=message)
         else:
             url = reverse('account:sign-up')
-            return self.redirect(url, message=_('注册失败 请重试'))
+            message = {
+                'info': _('注册失败 请重试')
+            }
+            return self.redirect(url, message=message)
 
 
 class SingIn(PageView):
@@ -50,15 +52,14 @@ class SingIn(PageView):
             return True, None
 
     def get_context(self, request, *args, **kwargs):
-        message = self.get_message()
-        return self.to_template(context=message)
+        return self.to_message()
 
     def post_context(self, request, *args, **kwargs):
         message = None
         if self.login_user(request):
             url = '/'
         else:
-            message = {'message': '用户名或密码错误'}
+            message = {'info': '用户名或密码错误'}
             url = reverse('account:sign-in')
         return self.redirect(url, message=message)
 

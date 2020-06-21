@@ -18,6 +18,11 @@ from kungfucms.apps.core.serializers import JSONEncoder
 
 
 class FlashMessage:
+
+    def to_message(self):
+        message = self.get_message()
+        return self.to_template(context={**message})
+
     def set_message(self, message):
         self.request.session['message'] = message
 

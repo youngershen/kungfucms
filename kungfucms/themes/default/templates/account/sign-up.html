@@ -25,9 +25,9 @@
             <h2>{% trans '欢迎注册' %}</h2>
         </div>
 
-        {% if message %}
+        {% if info %}
         <div class="kf-signup-message">
-            <span class="kf-signup-message-text alerts alert-wsarning" role="alert">{{ message }}</span>
+            <span class="kf-signup-message-text alerts alert-wsarning" role="alert">{{ info }}</span>
         </div>
         {% endif %}
 
@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">{% trans '确认密码' %}</label>
-                        <input name="password-confirm"
+                        <input name="password_confirm"
                                type="password"
                                class="form-control"
                                id="sign-up-form-input-password-confirm"

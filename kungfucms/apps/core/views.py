@@ -23,7 +23,8 @@ class PageView(FlashMessage, Context, Response, TemplateResponseMixin, RedirectR
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.service = self.service_class()
+        if self.service_class:
+            self.service = self.service_class()
 
     def get_context(self, request, *args, **kwargs):
         pass
