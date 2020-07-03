@@ -112,6 +112,12 @@
             }
         });
 
+        $('#sign-up-form-input-password-confirm').focus(function(){
+
+            $('#sign-up-form-input-password-confirm').val('');
+
+        });
+
         $('#sign-up-form-input-password-confirm-show-password').mousedown(function(){
             $('#sign-up-form-input-password-confirm').attr('type', 'text');
 

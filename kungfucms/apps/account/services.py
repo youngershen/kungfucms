@@ -6,6 +6,8 @@
 # WECHAT : 13811754531
 # https://github.com/youngershen
 from django.contrib.auth import login as django_login, logout as django_logout, authenticate
+from kungfucms.utils import normalize_string
+
 from kungfucms.apps.core.services import BaseService
 from kungfucms.apps.account.validators import SignUp as SignUpValidator, CheckUsername as CheckUsernameValidator
 from kungfucms.apps.account.models import User
@@ -34,7 +36,15 @@ class SignInView(BaseService):
 
 class SignUpView(BaseService):
     def sign_up(self, request, *args, **kwargs):
-        validator = SignUpValidator(request.POST)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        data = {
+            'username': normalize_string(username, lower=True),
+            'password': normalize_string(password)
+        }
+
+        validator = SignUpValidator(data)
         if validator.validate():
             username = validator.get('username')
             password = validator.get('password')

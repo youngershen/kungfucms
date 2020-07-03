@@ -85,3 +85,12 @@ def get_static_root():
     path = env.str('STATIC_ROOT', 'static')
     return path if path.startswith('/') else os.path.join(get_base_path(), path)
 
+
+# trim the parameter and then lower it
+def normalize_string(s, lower=False):
+    if lower:
+        s = s.strip().lower()
+    else:
+        s = s.trim()
+
+    return s
