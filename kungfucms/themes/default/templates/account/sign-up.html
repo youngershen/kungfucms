@@ -30,12 +30,13 @@
         </div>
         {% endif %}
 
+
         <div class="kf-signup-message d-none" id="kf-signup-message-network-error">
             <span class="kf-signup-message-text alerts alert-wsarning" role="alert">{% trans '网络错误 请重试' %}</span>
         </div>
 
         <div class="row justify-content-center kf-signup-row">
-            <div class="col-md-3 col-lg-3 col-sm-4 kf-signup-col">
+            <div class="col-md-6 col-lg-3 col-sm-6 kf-signup-col">
 
                 <form class="kf-signup-form" action="{% url 'account:sign-up' %}" method="post" onsubmit="return K.signup.submit();">
                     {% csrf_token %}

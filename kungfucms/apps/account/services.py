@@ -38,10 +38,12 @@ class SignUpView(BaseService):
     def sign_up(self, request, *args, **kwargs):
         username = request.POST.get('username')
         password = request.POST.get('password')
+        password_confirm = request.POST.get('password_confirm')
 
         data = {
             'username': normalize_string(username, lower=True),
-            'password': normalize_string(password)
+            'password': normalize_string(password),
+            'password_confirm': normalize_string(password_confirm)
         }
 
         validator = SignUpValidator(data)

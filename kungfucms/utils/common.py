@@ -88,9 +88,11 @@ def get_static_root():
 
 # trim the parameter and then lower it
 def normalize_string(s, lower=False):
+    s = str(s) if s else ''
+
     if lower:
         s = s.strip().lower()
     else:
-        s = s.trim()
+        s = s.strip()
 
     return s

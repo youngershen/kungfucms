@@ -9,7 +9,6 @@
 import logging
 from django.utils.translation import ugettext as _
 from django.urls import reverse
-from django.contrib.auth import login, logout, authenticate
 from kungfucms.apps.core.views import PageView
 from kungfucms.apps.account.services import SignUpView as SignUpService, SignInView as SignInService
 
@@ -31,13 +30,14 @@ class SignUp(PageView):
             message = {
                 'info': _('注册成功请登录')
             }
-            return self.redirect(url, message=message)
+            return self.redirect(url=url, message=message)
         else:
             url = reverse('account:sign-up')
             message = {
                 'info': _('注册失败 请重试')
             }
-            return self.redirect(url, message=message)
+
+            return self.redirect(url=url, message=message)
 
 
 class SingIn(PageView):
