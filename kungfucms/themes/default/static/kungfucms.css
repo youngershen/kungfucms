@@ -1,3 +1,122 @@
+/* kungfucms default theme */
+
+/* base style */
+html
+{
+    font-family: "Microsoft YaHei", Arial, "Courier New", Courier, Helvetica, monospace !important;
+    font-weight: 400 !important;
+    line-height: 1rem !important;
+    font-size: 16px !important;
+}
+
+body
+{
+    margin:0 !important;
+    padding: 0 !important;
+}
+
+.kungfu-container
+{
+
+}
+
+/* 导航 */
+.kf-navbar
+{
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.kf-navbar-brand
+{
+    font-size: 1.8rem;
+}
+
+.kf-navbar-search-input
+{
+    font-size: 1.6rem;
+}
+
+.kf-navbar-search-submit
+{
+    font-size: 1.6rem;
+}
+
+/* 底部栏 */
+.kf-footer
+{
+    background-color: #000;
+    color: #fff;
+    padding-top: 1rem;
+}
+
+.kf-footer-content-body
+{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.kf-footer-content-header
+{
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+}
+
+.kf-footer-content-body > ol
+{
+    list-style: none;
+    padding: 0;
+}
+
+.kf-footer-content-body > ol >li
+{
+    margin-bottom: .1rem;
+}
+
+.kf-footer-bottom-body > span
+{
+    margin-right: 1rem;
+}
+
+/* 登陆表单 */
+.kf-signin
+{
+    margin: 40px 10px;
+}
+
+.kf-signin-message
+{
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.kf-signin-title
+{
+    display: block;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.kf-signin-form-control
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kf-signin-form-submit-button
+{
+    width: 100%;
+}
+
+.kf-signin-form-wrap
+{
+    margin-top: 20px;
+}
+
+/* signup */
 
 .kf-signup-wrap
 {
@@ -101,3 +220,7 @@
 {
     margin-left: 5px;
 }
+
+/* signin */
+
+
