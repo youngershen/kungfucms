@@ -7,8 +7,8 @@
 {% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
-    <script src="{% static 'js/sign-up.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <script src="{% static 'js/signup.js' %}"></script>
 {% endblock %}
 
 {% block title %}
@@ -44,15 +44,15 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">{% trans '账号' %}</span>
-
                             </div>
-                            <input  name="username"
-                                status="false"
-                                type="text"
-                                class="form-control"
-                                id="sign-up-form-input-username"
-                                aria-describedby="username help"
-                                placeholder="{% trans '请输入用户名' %}">
+                            <input name="username"
+                                   status="false"
+                                   type="text"
+                                   class="form-control"
+                                   id="sign-up-form-input-username"
+                                   aria-describedby="username help"
+                                   placeholder="{% trans '请输入用户名' %}" >
+
                         </div>
 
                         <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signup-form-username-required-tip"></div>
