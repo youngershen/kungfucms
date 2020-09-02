@@ -32,7 +32,7 @@ urlpatterns += [
 
 # others
 urlpatterns += [
-    path('captcha/', include('decaptcha.urls')),
+    # path('captcha/', include('decaptcha.urls')),
 ]
 
 

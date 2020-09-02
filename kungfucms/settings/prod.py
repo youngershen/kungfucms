@@ -13,7 +13,7 @@ DEBUG = False
 INSTALLED_APPS += [
     'rest_framework',
     'django_filters',
-    'decaptcha',
+    # 'decaptcha',
     'kungfucms.apps.core.apps.CoreConfig',
     'kungfucms.apps.account.apps.AccountConfig',
     'kungfucms.apps.exception.apps.ExceptionConfig',
@@ -25,7 +25,7 @@ DOMAIN_NAME = env.list('DOMAIN_NAME', default='localhost')
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASES = {
-    'default': env.db()
+    'default': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", **env.db()}
 }
 
 CACHES = {
