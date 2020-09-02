@@ -96,3 +96,8 @@
     margin-top: .5rem !important;
     padding: .35rem .75rem !important;
 }
+
+.kf-sign-up-form-input-captcha
+{
+    margin-left: 5px;
+}

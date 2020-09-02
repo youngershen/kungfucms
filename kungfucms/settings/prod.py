@@ -13,7 +13,7 @@ DEBUG = False
 INSTALLED_APPS += [
     'rest_framework',
     'django_filters',
-    # 'decaptcha',
+    'decaptcha',
     'kungfucms.apps.core.apps.CoreConfig',
     'kungfucms.apps.account.apps.AccountConfig',
     'kungfucms.apps.exception.apps.ExceptionConfig',
@@ -47,3 +47,5 @@ SITE_NAME = 'Kungfucms'
 API_AUTH_SECRET = env.str('API_AUTH_SECRET')
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # one week
+
+DECAPTCHA_SIZE = (100, 20)

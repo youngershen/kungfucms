@@ -3,6 +3,7 @@ django-environ
 environ
 mysqlclient
 django-easy-validator
+django-easy-captcha
 requests
 redis
 flower
