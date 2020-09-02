@@ -41,13 +41,13 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <label for="sign-up-form-input-username" class="input-group-text">{% trans '账号' %}</label>
+                                <label for="kf-signup-form-input-username" class="input-group-text">{% trans '账号' %}</label>
                             </div>
                             <input name="username"
                                    status="false"
                                    type="text"
                                    class="form-control"
-                                   id="sign-up-form-input-username"
+                                   id="kf-signup-form-input-username"
                                    aria-describedby="username help"
                                    placeholder="{% trans '请输入用户名' %}" >
 
@@ -60,17 +60,17 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <label for="sign-up-form-input-password" class="input-group-text">{% trans '密码' %}</label>
+                                <label for="kf-signup-form-input-password" class="input-group-text">{% trans '密码' %}</label>
                             </div>
                             <input name="password"
                                 type="password"
                                 class="form-control"
                                 status="false"
-                                id="sign-up-form-input-password"
+                                id="kf-signup-form-input-password"
                                 placeholder="请输入密码">
 
                             <div class="input-group-append">
-                                <span class="input-group-text" id="sign-up-form-input-password-show-password">
+                                <span class="input-group-text" id="kf-signup-form-input-password-show-password">
                                     <i class="fas fa-eye"></i>
                                 </span>
                             </div>
@@ -88,24 +88,24 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <label for="sign-up-form-input-password-confirm"  class="input-group-text">{% trans '确认密码' %}</label>
+                                <label for="signup-form-input-password-confirm"  class="input-group-text">{% trans '确认密码' %}</label>
                             </div>
 
                             <input name="password_confirm"
                                 type="password"
                                 class="form-control"
-                                id="sign-up-form-input-password-confirm"
+                                id="kf-signup-form-input-password-confirm"
                                 status="false"
                                 placeholder="请输入密码">
 
                             <div class="input-group-append">
-                                <span class="input-group-text" id="sign-up-form-input-password-confirm-show-password">
+                                <span class="input-group-text" id="kf-signup-form-input-password-confirm-show-password">
                                     <i class="fas fa-eye"></i>
                                 </span>
                             </div>
                         </div>
 
-                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="sign-up-form-input-password-confirm-tip">
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signup-form-input-password-confirm-tip">
                             {% trans '确认密码必须与密码相同' %}
                         </div>
                     </div>
@@ -113,22 +113,22 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <label for="kf-sign-up-form-input-captcha"  class="input-group-text">{% trans '验证码' %}</label>
+                                <label for="kf-signup-form-input-captcha"  class="input-group-text">{% trans '验证码' %}</label>
                             </div>
 
                             <input name="captcha"
                                 type="text"
                                 class="form-control"
-                                id="kf-sign-up-form-input-captcha"
+                                id="kf-signup-form-input-captcha"
                                 status="false"
                                 placeholder="请输入验证码">
 
                             <div class="input-group-prepend">
-                                <img src="{% url 'decaptcha:get' %}" alt="" id="" class="kf-sign-up-form-input-captcha">
+                                <img src="{% url 'decaptcha:get' %}" alt="验证码" class="kf-signup-form-input-captcha" id="kf-signup-form-input-captcha-image">
                             </div>
                         </div>
 
-                        <div class="alert alert-danger kf-signup-form-tip d-nosne" role="alert" id="kf-sign-up-form-input-captcha-tip">
+                        <div class="alert alert-danger kf-signup-form-tip d-nosne" role="alert" id="kf-signup-form-input-captcha-tip">
                             {% trans '验证码错误 请重试' %}
                         </div>
                     </div>

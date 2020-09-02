@@ -55,7 +55,7 @@
 })(window, $);
 
 // singup
-(function (window, $) {
+(function (window, $){
 
     let signup = {};
 
@@ -70,8 +70,8 @@
     }
 
     $('document').ready(function(){
-        $('#sign-up-form-input-username').change(function(){
-            let username = $('#sign-up-form-input-username').val();
+        $('#kf-signup-form-input-username').change(function(){
+            let username = $('#kf-signup-form-input-username').val();
             let url = kungfucms.get_meta_content('check-username-url');
             $('#kf-signup-message-network-error').addClass('d-none');
 
@@ -85,7 +85,7 @@
                     console.log(r.status);
                     if(!r.status)
                     {
-                        $('#sign-up-form-input-username').attr('status', 'false');
+                        $('#kf-signup-form-input-username').attr('status', 'false');
 
                         if(r.message.username['min_length'])
                         {
@@ -119,7 +119,7 @@
 
                     }
                     else {
-                        $('#sign-up-form-input-username').attr('status', 'true');
+                        $('#kf-signup-form-input-username').attr('status', 'true');
                         $('#kf-signup-form-username-min-length-tip').addClass('d-none');
                         $('#kf-signup-form-username-required-tip').addClass('d-none') ;
                         $('#kf-signup-form-username-unique-tip').addClass('d-none') ;
@@ -132,10 +132,9 @@
             });
         });
 
+        $('#kf-signup-form-input-password').change(function(){
 
-        $('#sign-up-form-input-password').change(function(){
-
-            let password = $('#sign-up-form-input-password').val();
+            let password = $('#kf-signup-form-input-password').val();
             $('#kf-signup-message-network-error').addClass('d-none');
             $('#kf-signup-form-password-tip').addClass('d-none');
 
@@ -143,7 +142,7 @@
             if(regex.test(password))
             {
                 $('#kf-signup-form-password-tip').addClass('d-none');
-                $('#sign-up-form-input-password').attr('status', 'true');
+                $('#kf-signup-form-input-password').attr('status', 'true');
 
             }else
             {
@@ -151,54 +150,62 @@
             }
         });
 
+        $('#kf-signup-form-input-password-confirm').change(function(){
+            $('#kf-signup-form-input-password-confirm-tip').addClass('d-none');
 
-        $('#sign-up-form-input-password-confirm').change(function(){
-            $('#sign-up-form-input-password-confirm-tip').addClass('d-none');
-
-            let password_confirm = $('#sign-up-form-input-password-confirm').val();
-            let password = $('#sign-up-form-input-password').val();
+            let password_confirm = $('#kf-signup-form-input-password-confirm').val();
+            let password = $('#kf-signup-form-input-password').val();
 
             if(password === password_confirm)
             {
-                $('#sign-up-form-input-password-confirm-tip').addClass('d-none');
-                $('#sign-up-form-input-password-confirm').attr('status', 'true');
+                $('#kf-signup-form-input-password-confirm-tip').addClass('d-none');
+                $('#kf-signup-form-input-password-confirm').attr('status', 'true');
             }
             else
             {
-                $('#sign-up-form-input-password-confirm-tip').removeClass('d-none');
+                $('#kf-signup-form-input-password-confirm-tip').removeClass('d-none');
             }
         });
+        $('#kf-signup-form-input-password-confirm').focus(function(){
 
-        $('#sign-up-form-input-password-confirm').focus(function(){
-
-            $('#sign-up-form-input-password-confirm').val('');
-
-        });
-
-        $('#sign-up-form-input-password-confirm-show-password').mousedown(function(){
-            $('#sign-up-form-input-password-confirm').attr('type', 'text');
+            $('#kf-signup-form-input-password-confirm').val('');
 
         });
-        $('#sign-up-form-input-password-confirm-show-password').mouseup(function(){
-            $('#sign-up-form-input-password-confirm').attr('type', 'password');
+
+        $('#kf-signup-form-input-password-confirm-show-password').mousedown(function(){
+            $('#kf-signup-form-input-password-confirm').attr('type', 'text');
+
+        });
+        $('#kf-signup-form-input-password-confirm-show-password').mouseup(function(){
+            $('#kf-signup-form-input-password-confirm').attr('type', 'password');
         });
 
-
-        $('#sign-up-form-input-password-show-password').mousedown(function () {
-            $('#sign-up-form-input-password').attr('type', 'text')
+        $('#kf-signup-form-input-password-show-password').mousedown(function () {
+            $('#kf-signup-form-input-password').attr('type', 'text')
+        });
+        $('#kf-signup-form-input-password-show-password').mouseup(function () {
+            $('#kf-signup-form-input-password').attr('type', 'password')
         });
 
-        $('#sign-up-form-input-password-show-password').mouseup(function () {
-            $('#sign-up-form-input-password').attr('type', 'password')
+        $('#kf-signup-form-input-captcha-image').click(function(){
+
+            kungfucms.ajax({
+                'url': url,
+                'type': 'post',
+                'data': {
+                    'username': username
+                },
+                'success': function(r) {
+                }
+            })
         });
     });
 
-
     signup.submit = function()
     {
-        let username_status = $('#sign-up-form-input-username').attr('status');
-        let password_status = $('#sign-up-form-input-password').attr('status');
-        let password_confirm_status = $('#sign-up-form-input-password-confirm').attr('status');
+        let username_status = $('#kf-signup-form-input-username').attr('status');
+        let password_status = $('#kf-signup-form-input-password').attr('status');
+        let password_confirm_status = $('#kf-signup-form-input-password-confirm').attr('status');
 
         return username_status === 'true' && password_status === 'true' && password_confirm_status === 'true';
     }
