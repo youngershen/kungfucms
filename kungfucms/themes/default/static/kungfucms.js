@@ -3,8 +3,6 @@
 // base
 
 (function (window, $) {
-
-
     let kungfucms = {};
 
     if (window.kungfucms) {
@@ -189,13 +187,16 @@
 
         $('#kf-signup-form-input-captcha-image').click(function(){
 
+            let url = kungfucms.get_meta_content('get-captcha-url');
+
             kungfucms.ajax({
                 'url': url,
                 'type': 'post',
-                'data': {
-                    'username': username
-                },
                 'success': function(r) {
+                    console.log(r);
+                },
+                'error': function(r) {
+                    console.log(r)
                 }
             })
         });

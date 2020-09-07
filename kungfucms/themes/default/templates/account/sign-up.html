@@ -4,6 +4,8 @@
 
 {% block meta %}
     <meta name="check-username-url" content="{% url 'account:check-username' %}">
+    <meta name="get-captcha-url" content="{% url 'decaptcha:new' %}">
+
 {% endblock %}
 
 {% block head %}
