@@ -233,8 +233,11 @@
                     console.log(r);
                     if(parseInt(r.status) === 0) {
                         $('#kf-signup-form-input-captcha-tip').addClass('d-none')
+                        $('#kf-signup-form-input-captcha').attr('status', 'true');
+
                     }else {
                         $('#kf-signup-form-input-captcha-tip').removeClass('d-none')
+                        $('#kf-signup-form-input-captcha').attr('status', 'false');
                     }
                  },
                  'error': function(r) {
@@ -249,7 +252,8 @@
         let username_status = $('#kf-signup-form-input-username').attr('status');
         let password_status = $('#kf-signup-form-input-password').attr('status');
         let password_confirm_status = $('#kf-signup-form-input-password-confirm').attr('status');
+        let captcha_status = $('#kf-signup-form-input-captcha').attr('status');
 
-        return username_status === 'true' && password_status === 'true' && password_confirm_status === 'true';
+        return username_status === 'true' && password_status === 'true' && password_confirm_status === 'true' && captcha_status === 'true';
     }
 })(window, $);
