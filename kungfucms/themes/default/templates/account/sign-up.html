@@ -5,6 +5,7 @@
 {% block meta %}
     <meta name="check-username-url" content="{% url 'account:check-username' %}">
     <meta name="get-captcha-url" content="{% url 'decaptcha:new' %}">
+    <meta name="match-captcha-url" content="{% url 'decaptcha:match' %}">
 
 {% endblock %}
 
@@ -130,7 +131,7 @@
                             </div>
                         </div>
 
-                        <div class="alert alert-danger kf-signup-form-tip d-nosne" role="alert" id="kf-signup-form-input-captcha-tip">
+                        <div class="alert alert-danger kf-signup-form-tip d-none" role="alert" id="kf-signup-form-input-captcha-tip">
                             {% trans '验证码错误 请重试' %}
                         </div>
                     </div>
